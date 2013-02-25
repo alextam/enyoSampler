@@ -1,0 +1,282 @@
+body {
+	background: #1c1c1c;
+}
+
+.phdBg {
+	background:url('../img/phdBG.png');
+	background-position: center;
+	min-height:480px;
+	background-size: 640px 960px;
+	background-color: #1c1c1c;
+}
+
+.phdBigLogo {
+	background:url('../img/phdlogo.png') no-repeat;
+	background-position: center;
+	margin-left:auto;
+	margin-right:auto;
+	background-size: 200px 50px !important;
+ }
+
+.inflatePadding {
+	margin-left:15px !important;
+	margin-right:15px !important;
+}
+
+.fullWidth {
+	width:100%;
+}
+
+.sliderBullet {
+	width:10px !important;
+	height:10px !important;
+	background-color:#ffffff;
+	-webkit-border-radius: 6px !important;
+	-moz-border-radius: 6px !important;
+	border-radius: 6px !important;
+	margin:8px !important;
+}
+
+.bulletSelected {
+	background-color:#cc3333;	
+}
+
+.whitelink {
+	text-shadow: 0px -2px 2px rgba(0,0,0,.3) !important;
+	color:#fff;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.marginTop15px {
+	margin-top:15px !important;
+}
+
+.marginTop30px {
+	margin-top:30px !important;
+}
+
+.marginTop45px {
+	margin-top:45px !important;
+}
+
+.phdStd45px {
+	height:45px;
+}
+
+.carouselIndexDiv{
+	height:35px;
+	text-align:center !important;
+	padding-top:8px;
+}
+
+.maximize {
+	padding:0px !important;
+	margin:0px !important;
+}
+
+.redBarGapper {
+	width:18%;
+}
+
+.onyx-toolbar{
+	background-image: linear-gradient(bottom, #000000 10%, #323232 80%) !important;
+	background-image: -o-linear-gradient(bottom, #000000 10%, #323232 80%) !important;
+	background-image: -moz-linear-gradient(bottom, #000000 10%, #323232 80%) !important;
+	background-image: -webkit-linear-gradient(bottom, #000000 10%, #323232 80%) !important;
+	background-image: -ms-linear-gradient(bottom, #000000 10%, #323232 80%) !important;
+	border:none !important;
+}
+
+.favListItems {
+	height:80px !important;
+	padding:10px !important;
+}
+
+.favListSubItems {
+	background:#fff;
+	height:60px;
+	border:3px solid gold;
+	margin-left:auto;
+	margin-right:auto;
+	padding:8px;
+	color:#036b67;
+	font-weight: 600;
+}
+
+.redBarTabButton {
+	background:none !important;
+	text-shadow: 0px -2px 2px rgba(0,0,0,.3) !important;
+	color:#ffffff;
+	font-weight: 600;
+	width:198px;
+}
+
+.redBarTabButton.onyx-radiobutton.active {
+	background-image: linear-gradient(bottom, #540000 10%, #660000 80%) !important;
+	background-image: -o-linear-gradient(bottom, #540000 10%, #660000 80%) !important;
+	background-image: -moz-linear-gradient(bottom, #540000 10%, #660000 80%) !important;
+	background-image: -webkit-linear-gradient(bottom, #540000 10%, #660000 80%) !important;
+	background-image: -ms-linear-gradient(bottom, #540000 10%, #660000 80%) !important;
+}
+
+.phdStd40pxRedBar {
+	text-shadow: 0px -2px 2px rgba(0,0,0,.3) !important;
+	background-image: linear-gradient(bottom, #890101 15%, #a80202 80%) !important;
+	background-image: -o-linear-gradient(bottom, #890101 15%, #a80202 80%) !important;
+	background-image: -moz-linear-gradient(bottom, #890101 15%, #a80202 80%) !important;
+	background-image: -webkit-linear-gradient(bottom, #890101 15%, #a80202 80%) !important;
+	background-image: -ms-linear-gradient(bottom, #890101 15%, #a80202 80%) !important;
+	height:43px;
+	border-bottom:2px solid red !important;
+	padding:0 !important;
+	font-weight: 600;
+}
+
+.roundedCorner {
+	-webkit-border-radius : 6px !important;
+	-moz-border-radius : 6px !important;
+	border-radius : 6px !important;
+}
+
+.borderless {
+	border:none !important;
+}
+
+.phdButton {
+	text-shadow: 0px -2px 2px rgba(0,0,0,.3) !important;
+	-webkit-border-radius : 5px !important;
+	-moz-border-radius : 5px !important;
+	border-radius : 5px !important;
+	color:#ffffff !important;
+	font-weight: 600;
+	font-size:0.9em !important;
+	height:50px !important;
+	text-align: center;
+}
+
+.shadow {
+	-moz-box-shadow: 5px 5px 5px rgba(0,0,0,.3) !important;
+	-webkit-box-shadow: 5px 5px 5px rgba(0,0,0,.3) !important;
+	box-shadow: 5px 5px 5px rgba(0,0,0,.3) !important;
+}
+
+.shadow {
+	-moz-box-shadow: 5px 5px 5px rgba(0,0,0,.3) !important;
+	-webkit-box-shadow: 5px 5px 5px rgba(0,0,0,.3) !important;
+	box-shadow: 5px 5px 5px rgba(0,0,0,.3) !important;
+}
+
+.centerDiv {
+	margin-left:auto !important;
+	margin-right:auto !important;
+}
+
+.resetBottom {
+	-webkit-border-bottom-left-radius: 0px !important;
+	-moz-border-bottom-left-radius: 0px !important;
+	border-bottom-left-radius: 0px !important;
+	-webkit-border-bottom-right-radius: 0px !important;
+	-moz-border-bottom-right-radius: 0px !important;
+	border-bottom-right-radius: 0px !important;
+}
+
+.resetTop {
+	-webkit-border-top-left-radius: 0px !important;
+	-moz-border-top-left-radius: 0px !important;
+	border-top-left-radius: 0px !important;
+	-webkit-border-top-right-radius: 0px !important;
+	-moz-border-top-right-radius: 0px !important;
+	border-top-right-radius: 0px !important;
+}
+
+.roundedTop {
+	-webkit-border-top-left-radius: 10px !important;
+	-moz-border-top-left-radius: 10px !important;
+	border-top-left-radius: 10px !important;
+	-webkit-border-top-right-radius: 10px !important;
+	-moz-border-top-right-radius: 10px !important;
+	border-top-right-radius: 10px !important;
+}
+
+.roundedBottom {
+	-webkit-border-bottom-left-radius: 10px !important;
+	-moz-border-bottom-left-radius: 10px !important;
+	border-bottom-left-radius: 10px !important;
+	-webkit-border-bottom-right-radius: 10px !important;
+	-moz-border-bottom-right-radius: 10px !important;
+	border-bottom-right-radius: 10px !important;
+}
+
+.inputDecorator {
+	background: #000;
+	height:45px;
+	width:100%;
+	border:1px solid #191919 !important;
+}
+
+.inputDecorator.onyx-input-decorator.onyx-focused {
+	background-color: #565656 !important;
+	height:45px;
+	width:100%;
+	border:1px solid #595959 !important;
+}
+
+.inputDecorator input {
+	width:90%;
+	margin-top:5px !important;
+	color:#ffffff !important;
+}
+
+.test {
+	border: 1px solid red;
+}
+
+.test-alt {
+	border: 1px solid white;
+}
+
+.insetShadow {
+	-moz-box-shadow: inset 0 0 10px 1px #f1f1f1;
+	-webkit-box-shadow: inset 0 0 10px 1px #f1f1f1;
+	box-shadow: inset 0 0 10px 1px #f1f1f1;
+}
+
+.greenButton {
+	background-image: linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
+	background-image: -o-linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
+	background-image: -moz-linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
+	background-image: -webkit-linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
+	background-image: -ms-linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
+	border:1px solid #070707 !important;
+}
+
+
+.orangeButton {
+	background-image: linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
+	background-image: -o-linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
+	background-image: -moz-linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
+	background-image: -webkit-linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
+	background-image: -ms-linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
+	border:1px solid #070707 !important;
+}
+
+.errorInput {
+	background: pink;
+}
+
+input.errorPlaceholder::-webkit-input-placeholder, textarea.errorPlaceholder::-webkit-input-placeholder {
+  color: red;
+}
+
+input.errorPlaceholder::-moz-placeholder, textarea.errorPlaceholder::-moz-placeholder {
+  color: red;
+}
+
+input.errorPlaceholder::-ms-placeholder, textarea.errorPlaceholder::-ms-placeholder {
+  color: red;
+}
+
+.panels-wide > * {
+	min-width: 50%;
+}
