@@ -5,8 +5,7 @@ body {
 .phdBg {
 	background:url('../img/phdBG.png');
 	background-position: center;
-	min-height:480px;
-	background-size: 640px 960px;
+ 	background-size: 640px 960px;
 	background-color: #1c1c1c;
 }
 
@@ -80,6 +79,7 @@ body {
 }
 
 .onyx-toolbar{
+	background-image: -webkit-gradient(bottom, #000000 10%, #323232 80%) !important;
 	background-image: linear-gradient(bottom, #000000 10%, #323232 80%) !important;
 	background-image: -o-linear-gradient(bottom, #000000 10%, #323232 80%) !important;
 	background-image: -moz-linear-gradient(bottom, #000000 10%, #323232 80%) !important;
@@ -113,6 +113,7 @@ body {
 }
 
 .redBarTabButton.onyx-radiobutton.active {
+	background-image: -webkit-gradient(bottom, #000000 10%, #323232 80%) !important;
 	background-image: linear-gradient(bottom, #540000 10%, #660000 80%) !important;
 	background-image: -o-linear-gradient(bottom, #540000 10%, #660000 80%) !important;
 	background-image: -moz-linear-gradient(bottom, #540000 10%, #660000 80%) !important;
@@ -243,6 +244,7 @@ body {
 }
 
 .greenButton {
+	background-image: -webkit-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
 	background-image: linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
 	background-image: -o-linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
 	background-image: -moz-linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
@@ -253,6 +255,7 @@ body {
 
 
 .orangeButton {
+	background-image: -webkit-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
 	background-image: linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
 	background-image: -o-linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
 	background-image: -moz-linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
@@ -279,4 +282,9 @@ input.errorPlaceholder::-ms-placeholder, textarea.errorPlaceholder::-ms-placehol
 
 .panels-wide > * {
 	min-width: 50%;
+}
+
+input {
+	-web-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-user-modify: read-write-plaintext-only;
 }

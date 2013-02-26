@@ -56,11 +56,15 @@ enyo.kind({
 												disabled: true,
 											},
 											{	
-												content: "Coming Soon2",
+												content: "Drinks",
 												disabled: true,
 											},
 											{	
-												content: "Coming Soon3",
+												content: "Pasta",
+												disabled: true,
+											},
+											{	
+												content: "Pasta",
 												disabled: true,
 											},
 										]

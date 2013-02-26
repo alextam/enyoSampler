@@ -56,6 +56,7 @@ enyo.kind({
 						{
 							kind: "Input",
  							id:"txtInput",
+ 							classes:"inputFix",
  							value:"your@email.com",
 							placeholder: "Email", 
 							attributes: {
@@ -73,6 +74,7 @@ enyo.kind({
  							type:"password",
  							value:"password",
 							id:"txtPassword",
+							classes:"inputFix",
 							placeholder: "Password",
 							attributes: {
 								required: "password"	
