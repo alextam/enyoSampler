@@ -1,5 +1,6 @@
 body {
 	background: #1c1c1c;
+	-webkit-text-size-adjust:none; 
 }
 
 .phdBg {
@@ -79,12 +80,12 @@ body {
 }
 
 .onyx-toolbar{
-	background-image: -webkit-gradient(bottom, #000000 10%, #323232 80%) !important;
-	background-image: linear-gradient(bottom, #000000 10%, #323232 80%) !important;
-	background-image: -o-linear-gradient(bottom, #000000 10%, #323232 80%) !important;
-	background-image: -moz-linear-gradient(bottom, #000000 10%, #323232 80%) !important;
-	background-image: -webkit-linear-gradient(bottom, #000000 10%, #323232 80%) !important;
-	background-image: -ms-linear-gradient(bottom, #000000 10%, #323232 80%) !important;
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #000000 ), to( #323232 )) !important; 
+	background-image: -webkit-linear-gradient( #000000 , #323232 )  !important; 
+	background-image:    -moz-linear-gradient( #000000 , #323232 )  !important; 
+	background-image:     -ms-linear-gradient( #000000 , #323232 )  !important; 
+	background-image:      -o-linear-gradient( #000000 , #323232 )  !important; 
+	background-image:         linear-gradient( #000000 , #323232 )  !important;
 	border:none !important;
 }
 
@@ -113,21 +114,22 @@ body {
 }
 
 .redBarTabButton.onyx-radiobutton.active {
-	background-image: -webkit-gradient(bottom, #540000 10%, #660000 80%) !important;
-	background-image: linear-gradient(bottom, #540000 10%, #660000 80%) !important;
-	background-image: -o-linear-gradient(bottom, #540000 10%, #660000 80%) !important;
-	background-image: -moz-linear-gradient(bottom, #540000 10%, #660000 80%) !important;
-	background-image: -webkit-linear-gradient(bottom, #540000 10%, #660000 80%) !important;
-	background-image: -ms-linear-gradient(bottom, #540000 10%, #660000 80%) !important;
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #660000 ), to( #540000 )) !important;
+	background-image: -webkit-linear-gradient( #660000 , #540000 )  !important; 
+	background-image:    -moz-linear-gradient( #660000 , #540000 )  !important; 
+	background-image:     -ms-linear-gradient( #660000 , #540000 )  !important; 
+	background-image:      -o-linear-gradient( #660000 , #540000 )  !important; 
+	background-image:         linear-gradient( #660000 , #540000 )  !important;
 }
 
 .phdStd40pxRedBar {
 	text-shadow: 0px -2px 2px rgba(0,0,0,.3) !important;
-	background-image: linear-gradient(bottom, #890101 15%, #a80202 80%) !important;
-	background-image: -o-linear-gradient(bottom, #890101 15%, #a80202 80%) !important;
-	background-image: -moz-linear-gradient(bottom, #890101 15%, #a80202 80%) !important;
-	background-image: -webkit-linear-gradient(bottom, #890101 15%, #a80202 80%) !important;
-	background-image: -ms-linear-gradient(bottom, #890101 15%, #a80202 80%) !important;
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #a80202 ), to( #890101 )) !important; 
+	background-image: -webkit-linear-gradient( #a80202 , #890101 )  !important; 
+	background-image:    -moz-linear-gradient( #a80202 , #890101 )  !important; 
+	background-image:     -ms-linear-gradient( #a80202 , #890101 )  !important; 
+	background-image:      -o-linear-gradient( #a80202 , #890101 )  !important;  
+	background-image:         linear-gradient( #a80202 , #890101 )  !important;
 	height:43px;
 	border-bottom:2px solid red !important;
 	padding:0 !important;
@@ -154,12 +156,6 @@ body {
 	font-size:0.9em !important;
 	height:50px !important;
 	text-align: center;
-}
-
-.shadow {
-	-moz-box-shadow: 5px 5px 5px rgba(0,0,0,.3) !important;
-	-webkit-box-shadow: 5px 5px 5px rgba(0,0,0,.3) !important;
-	box-shadow: 5px 5px 5px rgba(0,0,0,.3) !important;
 }
 
 .shadow {
@@ -244,23 +240,23 @@ body {
 }
 
 .greenButton {
-	background-image: -webkit-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
-	background-image: linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
-	background-image: -o-linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
-	background-image: -moz-linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
-	background-image: -webkit-linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
-	background-image: -ms-linear-gradient(bottom, #13C32E 20%, #11B329 60%, #46B557 80%) !important;
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #13C32E ), to( #46B557 )) !important;
+	background-image: -webkit-linear-gradient( #13C32E , #46B557 )  !important; 
+	background-image:    -moz-linear-gradient( #13C32E , #46B557 )  !important; 
+	background-image:     -ms-linear-gradient( #13C32E , #46B557 )  !important;  
+	background-image:      -o-linear-gradient( #13C32E , #46B557 )  !important; 
+	background-image:         linear-gradient( #13C32E , #46B557 )  !important;
 	border:1px solid #070707 !important;
 }
 
 
 .orangeButton {
-	background-image: -webkit-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
-	background-image: linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
-	background-image: -o-linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
-	background-image: -moz-linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
-	background-image: -webkit-linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
-	background-image: -ms-linear-gradient(bottom, #f1a43a 20%, #f39804 60%, #f1a43a 80%) !important;
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #f1a43a ), to( #f39804 )) !important;
+	background-image: -webkit-linear-gradient( #f1a43a , #f39804 )  !important; 
+	background-image:    -moz-linear-gradient( #f1a43a , #f39804 )  !important; 
+	background-image:     -ms-linear-gradient( #f1a43a , #f39804 )  !important;  
+	background-image:      -o-linear-gradient( #f1a43a , #f39804 )  !important; 
+	background-image:         linear-gradient( #f1a43a , #f39804 )  !important;
 	border:1px solid #070707 !important;
 }
 
@@ -285,6 +281,14 @@ input.errorPlaceholder::-ms-placeholder, textarea.errorPlaceholder::-ms-placehol
 }
 
 .inputFix {
-	-web-tap-highlight-color: rgba(0,0,0,0);
-	-webkit-user-modify: read-write-plaintext-only;
+	/*
+	-webkit-tap-highlight-color: rgba(0,0,0,0); 	
+	-webkit-user-modify: read-write-plaintext-only !important;
+	*/
 }
+
+.offBackFace {
+	-webkit-backface-visibility: hidden !important;
+}
+
+
