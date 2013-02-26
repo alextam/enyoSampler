@@ -3,120 +3,133 @@ enyo.kind({
 	kind: "FittableRows", 
 	classes: "enyo-fit enyo-unselectable phdBg",
  	components: [
-		{   	
-			kind: "FittableRows",
+ 		{   	
+			kind: "Scroller",
 			fit:true,
-			id:"formLogin",
-			classes:'inflatePadding',
+			name: "mainScroll",
+			ondrag:"resetZoomFromInput",
 			components: [
-				 
-		   		{
-		   			tag:"div",
-		   			classes:"phdBigLogo",
-		   			style:"height:70px;",
-		   		},
-		   		{
-		   			kind:"ImageCarousel",
-		   			name:"imgCarousel", 
-		   			onload:"carouselLoad", 
-		   			onZoom:"zoom", 
-		   			onerror:"error", 
-		   			onTransitionStart: "carouselTransitionStart", 
-		   			onTransitionFinish: "carouselTransitionFinish",
-		   			style:"height:186px",
- 		   		},
-		   		
-		   		{
-		   			tag:"div",
-		   			kind: "FittableColumns",
-		   			classes: "carouselIndexDiv",
- 		   			components: [
+			{
+					id:"formLogin",
+					classes:'inflatePadding',
+					components: [
 						{
-							tag:"div",
-							name:"adSelector0",
-							classes:"sliderBullet shadow",
-							 
+				   			tag:"div",
+				   			classes:"phdBigLogo",
+				   			style:"height:55px;",
+				   		},
+				   		{
+				   			kind:"ImageCarousel",
+				   			name:"imgCarousel", 
+				   			onload:"carouselLoad", 
+				   			onZoom:"zoom", 
+				   			onerror:"error", 
+				   			onTransitionStart: "carouselTransitionStart", 
+				   			onTransitionFinish: "carouselTransitionFinish",
+				   			style:"height:186px",
+		 		   		},
+				   		
+				   		{
+				   			tag:"div",
+				   			kind: "FittableColumns",
+				   			classes: "carouselIndexDiv",
+		 		   			components: [
+								{
+									tag:"div",
+									name:"adSelector0",
+									classes:"sliderBullet shadow",
+									 
+								},
+								{
+									tag:"div",
+									name:"adSelector1",
+									classes:"sliderBullet shadow",
+								},
+								{
+									tag:"div",
+									name:"adSelector2",
+									classes:"sliderBullet shadow",
+								},
+							],
+				   		},
+				   		{
+				   			kind: "onyx.InputDecorator", 
+				   			classes:"inputDecorator resetBottom roundedTop shadow",
+				   			components: [
+								{
+									kind: "Input",
+		 							id:"txtInput",
+		 							classes:"inputFix",
+		 							value:"your@email.com",
+									placeholder: "Email", 
+									onfocus:"zoomToInput",
+									onblur:"resetZoomFromInput",
+									attributes: {
+										required: "email"	
+									} 
+		 						},
+							]
 						},
 						{
-							tag:"div",
-							name:"adSelector1",
-							classes:"sliderBullet shadow",
+				   			kind: "onyx.InputDecorator", 
+				   			classes:"inputDecorator resetTop roundedBottom",
+				   			components: [
+								{
+									kind: "Input",
+		 							type:"password",
+		 							value:"password",
+									id:"txtPassword",
+									classes:"inputFix",
+									onfocus:"zoomToInput",
+									onblur:"resetZoomFromInput",
+									placeholder: "Password",
+									attributes: {
+										required: "password"	
+									} 
+									
+		 						},
+							]
 						},
 						{
-							tag:"div",
-							name:"adSelector2",
-							classes:"sliderBullet shadow",
-						},
+				   			tag:"div",
+				   			kind: "FittableColumns",
+				   			style:"margin-top:15px",
+		 		   			components: [
+				   				{
+									kind: "onyx.Button",
+									classes:"orangeButton fullWidth phdButton",
+									style:"width:48%",
+									content: "Create Account",
+									name:"btnCreateAccount",
+									ontap: "createAccount"
+								},
+				   				{
+									fit:true,
+								},
+								{
+									kind: "onyx.Button",
+									classes:"greenButton fullWidth phdButton shadow",
+									content: "Sign In",
+									style:"width:48%",
+									name:"btnSignin",
+									ontap: "signIn"
+								},
+				   			]
+				   		},
+				   		{
+				   			tag:"p",
+				   			style:"height:30px;",
+				   			ontap:"forgetPassword",
+		 		   			allowHtml: true,
+		 		   			content: "<a href='#' class='whitelink'>Forget Password ? &rarr;</a>",
+				   		},
+				   		{
+				   			tag:"div",
+				   			style:"height:220px;",
+				   		},		   	
 					],
-		   		},
-		   		{
-		   			kind: "onyx.InputDecorator", 
-		   			classes:"inputDecorator resetBottom roundedTop shadow",
-		   			components: [
-						{
-							kind: "Input",
- 							id:"txtInput",
- 							classes:"inputFix",
- 							value:"your@email.com",
-							placeholder: "Email", 
-							attributes: {
-								required: "email"	
-							} 
- 						},
-					]
 				},
-				{
-		   			kind: "onyx.InputDecorator", 
-		   			classes:"inputDecorator resetTop roundedBottom shadow",
-		   			components: [
-						{
-							kind: "Input",
- 							type:"password",
- 							value:"password",
-							id:"txtPassword",
-							classes:"inputFix",
-							placeholder: "Password",
-							attributes: {
-								required: "password"	
-							} 
-							
- 						},
-					]
-				},
-				{
-		   			tag:"div",
-		   			kind: "FittableColumns",
-		   			style:"margin-top:15px",
- 		   			components: [
-		   				{
-							kind: "onyx.Button",
-							classes:"orangeButton fullWidth phdButton shadow",
-							style:"width:48%",
-							content: "Create Account",
-							name:"btnCreateAccount",
-							ontap: "createAccount"
-						},
-		   				{
-							fit:true,
-						},
-						{
-							kind: "onyx.Button",
-							classes:"greenButton fullWidth phdButton shadow",
-							content: "Sign In",
-							style:"width:48%",
-							name:"btnSignin",
-							ontap: "signIn"
-						},
-		   			]
-		   		},
-		   		{
-		   			tag:"p",
-		   			style:"height:30px;",
-		   			ontap:"forgetPassword",
- 		   			allowHtml: true,
- 		   			content: "<a href='#' class='whitelink'>Forget Password ? &rarr;</a>",
-		   		},	   	
-			]
+				],
 		},
 	],
 	create: function() {
@@ -159,6 +172,18 @@ enyo.kind({
  	},
 	carouselTransitionStart: function(inSender, inEvent) {
 		this.updateAdSelector(inEvent.toIndex);
+ 	},
+ 	zoomToInput: function(inSender,inEvent){
+ 		inEvent.preventDefault();
+ 		inSender.focus();
+ 		this.$.imgCarousel.hide();
+ 		this.$.mainScroll.setScrollTop(0);
+ 		//this.$.mainScroll.setScrollTop(500);
+ 	},
+ 	resetZoomFromInput: function(inSender,inEvent){
+ 		inEvent.preventDefault();
+ 		this.$.imgCarousel.show();
+ 		this.$.mainScroll.setScrollTop(0);
  	},
 	signIn : function(inSender,inEvent){
   		SimpleValidator.validateForm($('#formLogin'), true, onSuccessValidate, onErrorValidate );

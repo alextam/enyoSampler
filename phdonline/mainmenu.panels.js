@@ -63,10 +63,6 @@ enyo.kind({
 												content: "Pasta",
 												disabled: true,
 											},
-											{	
-												content: "Pasta",
-												disabled: true,
-											},
 										]
 									},
 		 						]
@@ -84,10 +80,10 @@ enyo.kind({
 			kind: "Panels", 
 			name:"AppPanels",
 			onTransitionStart:"handlePanelChanged", 
-			arrangerKind: "CarouselArranger", 
+			arrangerKind: "CardArranger", 
 			classes: "panels-wide",
 			fit:true,
-			realtimeFit: true, 
+			realtimeFit: false, 
 			components: [
 				{
 					name:"favListPanel",
@@ -128,12 +124,13 @@ enyo.kind({
 		this.$.favListPanel.addControl(new fav.selection());
  	},
 	updateTabMenu : function(index) {
-		this.$.tabScroller.scrollTo(index*200, 0);
+		//this.$.tabScroller.scrollTo(index*200, 0);
+		this.$.tabScroller.setScrollLeft(index*200);
 		this.$.tabMenu.setActive( this.$.tabMenu.children[index] );
 
 	},
 	handleRadioTabActivate : function(inSender, inEvent ){
-
+		//HandleRadioTab
 	},
 	handlePanelChanged : function(inSender, inEvent) {
 		this.updateTabMenu( inEvent.toIndex );

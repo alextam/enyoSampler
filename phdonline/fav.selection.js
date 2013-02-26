@@ -30,7 +30,7 @@ enyo.kind({
   						components: [
 							{ 
 								tag:"div",
-								classes:"favListSubItems roundedCorner insetShadow",
+								classes:"favListSubItems roundedCorner",
 								components: [
 									{
 										tag:"h1",
