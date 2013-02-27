@@ -68,6 +68,12 @@ enyo.kind({
 		this.$.loadingDiv.show();
 		this.populateList();
 	},
+	refreshIt : function(){
+		console.log('doing refresh');
+		this.$.favList.setScrollTop(0);
+		document.body.scrollTop = 2;
+		document.body.scrollTop = 0;
+	},
 	populateList : function(inSender, inEvent) {
 		this.$.favList.setCount(this.db.length);
  		this.$.favList.reset();

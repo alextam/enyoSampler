@@ -1,35 +1,28 @@
 enyo.kind({
-	name: "enyo.tutorial.page2",
+	name: "enyo.benchmark",
 	kind: "FittableRows", 
 	classes: "enyo-fit enyo-unselectable",
 	components: [
-		{
-			kind: "onyx.Toolbar",
-			layoutKind: "FittableColumnsLayout", style: "height: 50px;",			
-				components: [
-					{kind: "onyx.Button", content: "Prev", name:'btnPrev', ontap:'btnPrevTapped'},
-					{content: "Filtered Search", fit:true, style:'text-align:center'},
-				]
-		},
 		{
 			kind: "FittableColumns", 
 			style:'margin:10px;height:48px;',
 				components: [
 					{
 						name:'searchInput', 
-						kind: "onyx.Input", 
+						kind: "Input", 
+						classes:"inputFix",
 						layoutKind: "FittableColumnsLayout", 
 						placeholder: "Search text here...", 
 						fit:true, 
-						style:'padding:10px;font-size:1.2em;', 
-						onchange: "search"
+						style:'padding:10px;font-size:1.1em;', 
+						onchange: "search",
 					}
 				]
 		},
 		{   
-			name: "list", kind: "List", multiSelect: false, fit:true, count:0, onSetupItem: "setupItem", 
+			name: "benchMarkList", kind: "List", multiSelect: false, fit:true, count:0, touch:true, onSetupItem: "setupItem", 
 				components: [
-					{name: "item", style:'height:50px;padding:15px;border:1px solid #f3f3f3;', ontap:'listItemTapped', layoutKind: "FittableColumnsLayout", 
+					{name: "item", style:'height:50px;padding:15px;border:1px solid #f3f3f3;background:#ccc;', ontap:'listItemTapped', layoutKind: "FittableColumnsLayout", 
 							components: [
 								{name: "age", style:'font-size:1em;float:left;padding:5px;', fit:true},
 								{name: "name", style:'font-size:1em;float:left;padding:5px;', fit:true },
@@ -38,13 +31,6 @@ enyo.kind({
 					}
 				]
 		},
-		{
-			kind: "onyx.Toolbar",
-			layoutKind: "FittableColumnsLayout", style: "height: 50px;",
-				components: [
-					{content: "Footer", fit:true, style:'text-align:center;' },
-				]
-		}	
 	],
 	// Sample Data in form of Array; the real thing will have some callback/ajax that returns actual data
 	db: [
@@ -68,9 +54,17 @@ enyo.kind({
 		{"name":"henrik","age":13},
 		{"name":"isaac","age":11},
 		{"name":"john","age":11},
-		{"name":"jessie","age":12}
+		{"name":"jessie","age":12},
+		{"name":"fanny chow","age":16},
+		{"name":"feng chao","age":13},
+		{"name":"guiness","age":16},
+		{"name":"menigi","age":12},
+		{"name":"enrique","age":13},
+		{"name":"ismail","age":11},
+		{"name":"dread","age":11},
+		{"name":"jessie02","age":12}
 	],
-	rendered: function() {
+	create: function() {
 		this.inherited(arguments);
 		this.populateList();
 	},
@@ -78,10 +72,9 @@ enyo.kind({
 		new enyo.tutorial.app().renderInto(document.body);
 	},
 	populateList : function(inSender, inEvent) {
-		this.$.list.setCount(this.db.length);
-		this.$.list.reset();
+		this.$.benchMarkList.setCount(this.db.length);
+		this.$.benchMarkList.reset();
 	},
-
 	setupItem : function(inSender, inEvent) {
 		var i = inEvent.index;
 		var data = this.filter ? this.filtered : this.db;
@@ -91,7 +84,12 @@ enyo.kind({
 		this.$.name.setContent(names);
 		this.$.age.setContent(ages);
 	}, 
-
+	refreshIt : function(){
+		console.log('doing refresh');
+		this.$.benchMarkList.setScrollTop(0);
+		document.body.scrollTop = 2;
+		document.body.scrollTop = 0;
+	},
 	search: function(inSender, inEvent) {
 		this.searchText = this.$.searchInput.getValue();
 		enyo.job(this.id + ":search", enyo.bind(this, "filterList", this.searchText), 200);
@@ -101,24 +99,24 @@ enyo.kind({
 		if (inFilter != this.filter) {
 			this.filter = inFilter;
 			this.filtered = this.generateFilteredData(inFilter);
-			this.$.list.setCount(this.filtered.length);
-			this.$.list.reset();
+			this.$.benchMarkList.setCount(this.filtered.length);
+			this.$.benchMarkList.reset();
 		}
 		console.log(this.filtered);
 	},
 	refreshList: function() {
 		if (this.filter) {
 			this.filtered = this.generateFilteredData(this.filter);
-			this.$.list.setCount(this.filtered.length);
+			this.$.benchMarkList.setCount(this.filtered.length);
 		} else {
-			this.$.list.setCount(this.db.length);
+			this.$.benchMarkList.setCount(this.db.length);
 		}
-		this.$.list.refresh();
+		this.$.benchMarkList.refresh();
 	},
 	removeItem: function(inIndex) {
 		this._removeDbItem(inIndex);
 		//Single item deleted from listView but must delete DB reference too.
-		this.$.list.getSelection().remove(inIndex);
+		this.$.benchMarkList.getSelection().remove(inIndex);
 		this.refreshList();
 	},
 	_removeDbItem: function(inIndex) {

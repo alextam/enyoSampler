@@ -60,9 +60,9 @@ enyo.kind({
 				   			components: [
 								{
 									kind: "Input",
-		 							id:"txtEmail",
-		 							value:"your@email.com",
+		 							id:"txtInput",
 		 							classes:"inputFix",
+		 							value:"your@email.com",
 									placeholder: "Email", 
 									onfocus:"zoomToInput",
 									onblur:"resetZoomFromInput",
