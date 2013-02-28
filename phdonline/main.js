@@ -55,43 +55,51 @@ enyo.kind({
 							],
 				   		},
 				   		{
-				   			kind: "onyx.InputDecorator", 
-				   			classes:"inputDecorator resetBottom roundedTop shadow",
-				   			components: [
+				   			tag:"div",
+				   			kind: "FittableRows",
+				   			components:[
+					   			{
+						   			kind: "onyx.InputDecorator", 
+						   			classes:"inputDecorator resetBottom roundedTop",
+						   			components: [
+										{
+											kind: "Input",
+				 							id:"txtEmail",
+				 							value:"your@email.com",
+				 							classes:"inputFix",
+											placeholder: "Email", 
+											onfocus:"zoomToInput",
+											onblur:"resetZoomFromInput",
+											attributes: {
+												required: "email"	
+											} 
+				 						},
+									],
+								},
 								{
-									kind: "Input",
-		 							id:"txtEmail",
-		 							value:"your@email.com",
-		 							classes:"inputFix",
-									placeholder: "Email", 
-									onfocus:"zoomToInput",
-									onblur:"resetZoomFromInput",
-									attributes: {
-										required: "email"	
-									} 
-		 						},
-							]
-						},
-						{
-				   			kind: "onyx.InputDecorator", 
-				   			classes:"inputDecorator resetTop roundedBottom",
-				   			components: [
-								{
-									kind: "Input",
-		 							type:"password",
-		 							value:"password",
-									id:"txtPassword",
-									classes:"inputFix",
-									onfocus:"zoomToInput",
-									onblur:"resetZoomFromInput",
-									placeholder: "Password",
-									attributes: {
-										required: "password"	
-									} 
-									
-		 						},
-							]
-						},
+						   			kind: "onyx.InputDecorator", 
+						   			classes:"inputDecorator resetTop roundedBottom",
+						   			components: [
+										{
+											kind: "Input",
+				 							type:"password",
+				 							value:"password",
+											id:"txtPassword",
+											classes:"inputFix",
+											onfocus:"zoomToInput",
+											onblur:"resetZoomFromInput",
+											placeholder: "Password",
+											attributes: {
+												required: "password"	
+											} 
+											
+				 						},
+									],
+								},
+							],
+
+				   		},
+				   		
 						{
 				   			tag:"div",
 				   			kind: "FittableColumns",
@@ -103,7 +111,7 @@ enyo.kind({
 									style:"width:48%",
 									content: "Create Account",
 									name:"btnCreateAccount",
-									ontap: "createAccount"
+									onclick: "createAccount"
 								},
 				   				{
 									fit:true,
@@ -114,7 +122,7 @@ enyo.kind({
 									content: "Sign In",
 									style:"width:48%",
 									name:"btnSignin",
-									ontap: "signIn"
+									onclick: "signIn"
 								},
 				   			]
 				   		},
@@ -201,6 +209,6 @@ enyo.kind({
 		}
 	},
 	createAccount : function(inSender, inEvent) {
-		console.log(inSender.name + ' tapped');
+		new register.address().renderInto( document.body );
 	}
 });

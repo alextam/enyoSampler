@@ -12,6 +12,7 @@ enyo.kind({
 						kind: "Input", 
 						classes:"inputFix",
 						layoutKind: "FittableColumnsLayout", 
+						onblur:"resetList",
 						placeholder: "Search text here...", 
 						fit:true, 
 						style:'padding:10px;font-size:1.1em;', 
@@ -75,6 +76,10 @@ enyo.kind({
 		this.$.benchMarkList.setCount(this.db.length);
 		this.$.benchMarkList.reset();
 	},
+	resetList : function(inSender, inEvent) {
+		inSender.hasNode().blur();
+		this.search();
+	},
 	setupItem : function(inSender, inEvent) {
 		var i = inEvent.index;
 		var data = this.filter ? this.filtered : this.db;
@@ -102,7 +107,7 @@ enyo.kind({
 			this.$.benchMarkList.setCount(this.filtered.length);
 			this.$.benchMarkList.reset();
 		}
-		console.log(this.filtered);
+		//console.log(this.filtered);
 	},
 	refreshList: function() {
 		if (this.filter) {

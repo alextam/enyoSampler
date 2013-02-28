@@ -73,6 +73,7 @@ enyo.kind({
 		this.$.favList.setScrollTop(0);
 		document.body.scrollTop = 2;
 		document.body.scrollTop = 0;
+		this.populateList();
 	},
 	populateList : function(inSender, inEvent) {
 		this.$.favList.setCount(this.db.length);

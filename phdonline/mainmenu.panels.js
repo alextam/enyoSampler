@@ -100,11 +100,11 @@ enyo.kind({
 					name:"heavyPanel",
 				},
 				{
-					content:3, 
+					content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum dolor eu turpis aliquam vitae vestibulum mi luctus. Sed commodo arcu in libero placerat non fermentum orci porta. Duis commodo elementum tellus, nec egestas arcu sagittis ut. Aenean nulla urna, imperdiet quis venenatis at, pulvinar vitae libero. Maecenas congue libero a nulla commodo et volutpat magna ultrices. Aliquam tristique, eros gravida accumsan lacinia, purus nisl tristique odio, eget consequat diam dui in eros. Nulla sed nisl lorem. Aliquam sit amet vehicula nunc. Etiam eros ante, consequat sed rutrum ut, mollis in lacus. Nam malesuada lorem quis elit pharetra at ultrices justo euismod. Fusce at diam quis nulla tincidunt posuere. Mauris sit amet mauris odio. Mauris urna enim, aliquam et suscipit ac, ultrices vel nibh. Ut condimentum, ante ac feugiat facilisis, magna neque vehicula risus, ac fermentum nulla neque rhoncus mauris. Sed a lacus mi, nec accumsan est.", 
 					style:"background:green;"
 				},
 				{
-					content:4, 
+					content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum dolor eu turpis aliquam vitae vestibulum mi luctus. Sed commodo arcu in libero placerat non fermentum orci porta. Duis commodo elementum tellus, nec egestas arcu sagittis ut. Aenean nulla urna, imperdiet quis venenatis at, pulvinar vitae libero. Maecenas congue libero a nulla commodo et volutpat magna ultrices. Aliquam tristique, eros gravida accumsan lacinia, purus nisl tristique odio, eget consequat diam dui in eros. Nulla sed nisl lorem. Aliquam sit amet vehicula nunc. Etiam eros ante, consequat sed rutrum ut, mollis in lacus. Nam malesuada lorem quis elit pharetra at ultrices justo euismod. Fusce at diam quis nulla tincidunt posuere. Mauris sit amet mauris odio. Mauris urna enim, aliquam et suscipit ac, ultrices vel nibh. Ut condimentum, ante ac feugiat facilisis, magna neque vehicula risus, ac fermentum nulla neque rhoncus mauris. Sed a lacus mi, nec accumsan est.", 
 					style:"background:blue;"
 				},
 			],
@@ -122,11 +122,12 @@ enyo.kind({
 	// Sample Data in form of Array; the real thing will have some callback/ajax that returns 
 	// actual data.
 	create: function() {
-		//create, rendered is one of the default events, we need to add inherited(arguments)
+		//create, and rendered is one of the default events, we need to add inherited(arguments)
 		//to work because, we are overriding the default functions.
 		this.inherited(arguments);
 		
 		//To add external js files unit tested into some named div, just use addControl. 
+		//Add controls and function into app's hash this.$, so that, you can control the function within.
 		this.$.favList = new fav.selection(); 
 		this.$.benchMarkList = new enyo.benchmark();
 		this.$.heavyList = new enyo.heavy();
@@ -139,20 +140,25 @@ enyo.kind({
 	updateTabMenu : function(index) {
 		this.$.tabScroller.setScrollLeft(index * 200);
 		this.$.tabMenu.setActive( this.$.tabMenu.children[index] );
+		this.$.heavyList.refreshIt();
+		this.$.favList.refreshIt();
+		// reflowing panels recalculates and repaint the panel internally.
 		this.$.favListPanel.reflow();
 		this.$.benchMarkListPanel.reflow();
 		this.$.heavyPanel.reflow();
-		this.$.heavyList.refreshIt();
 	},
 	handleFlick : function(inSender, inEvent ){
-		if (inEvent.xVelocity < 0){
+		// Temporary work around to handle Gesture on android 
+		if (inEvent.xVelocity < -0.02){
+			//Switching panels foward
 			this.$.AppPanels.next();	
-		} else {
+		} else if (inEvent.xVelocity > 0.025) {
+			//Switching panels previous	
 			this.$.AppPanels.previous();
 		}
 	},
 	handleRadioTabActivate : function(inSender, inEvent ){
-		//HandleRadioTab
+		//HandleRadioTab Do nothing.
 	},
 	
 	handlePanelChanged : function(inSender, inEvent) {

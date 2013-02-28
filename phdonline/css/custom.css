@@ -10,6 +10,15 @@ body {
 	background-color: #1c1c1c;
 }
 
+.iconArrow {
+	background:url('../img/iconPacks.png') no-repeat !important;
+	background-position: 100% 0px !important;
+	background-size: 42px 168px !important;
+	width:100% !important;
+	height:42px !important;
+	background-color:#000 !important;
+}
+
 .phdBigLogo {
 	background:url('../img/phdlogo.png') no-repeat;
 	background-position: center;
@@ -18,9 +27,23 @@ body {
 	background-size: 200px 50px !important;
  }
 
+ .phdTinyLogo {
+ 	background:url('../img/phdlogoBtn.png') no-repeat;
+	background-position: center;
+	margin-left:auto;
+	margin-right:auto;
+	border:none !important;
+	background-size: 154px 35px !important;	
+ }
+
 .inflatePadding {
 	margin-left:15px !important;
 	margin-right:15px !important;
+}
+
+.explode {
+	margin:0 !important;
+	padding: 0 !important;
 }
 
 .fullWidth {
@@ -80,12 +103,12 @@ body {
 }
 
 .onyx-toolbar{
-	background-image: -webkit-gradient(linear, left top, left bottom, from( #000000 ), to( #323232 )) !important; 
-	background-image: -webkit-linear-gradient( #000000 , #323232 )  !important; 
-	background-image:    -moz-linear-gradient( #000000 , #323232 )  !important; 
-	background-image:     -ms-linear-gradient( #000000 , #323232 )  !important; 
-	background-image:      -o-linear-gradient( #000000 , #323232 )  !important; 
-	background-image:         linear-gradient( #000000 , #323232 )  !important;
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #323232 ), to( #000000 )) !important; 
+	background-image: -webkit-linear-gradient( #323232 , #000000 )  !important; 
+	background-image:    -moz-linear-gradient( #323232 , #000000 )  !important; 
+	background-image:     -ms-linear-gradient( #323232 , #000000 )  !important; 
+	background-image:      -o-linear-gradient( #323232 , #000000 )  !important; 
+	background-image:         linear-gradient( #323232 , #000000 )  !important;
 	border:none !important;
 }
 
@@ -207,17 +230,42 @@ body {
 
 .inputDecorator {
 	background: #000;
-	height:25px;
-	width:95%;
+	height:45px;
+	width:100%;
 	border:1px solid #191919 !important;
 }
+
+.selectDecorator {
+	background: #000;
+	height:45px;
+	width:100%;
+	border:1px solid #191919 !important;
+}
+
+.onyx-picker .onyx-menu-item {
+ 	text-align:left !important;
+ 	font-weight: 600;
+ 	color:#333 !important;
+ 	font-size:1em;
+}
+
 
 .inputDecorator.onyx-input-decorator.onyx-focused {
 	background-color: #ffffff !important;
 	color:#000000 !important; 
-	height:25px;
+	height:45px;
 	border:1px solid #595959 !important;
 }
+
+h1.orangeHeader {
+	font-size:0.9em;
+	text-indent: 10px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color:#ff9d0B;
+	margin-top:6px !important;
+	margin-bottom:6px !important;
+} 
 
 .inputDecorator.onyx-input-decorator.onyx-focused input{
 	color:#000000 !important; 
@@ -225,7 +273,8 @@ body {
 
 .inputDecorator input {
 	width:100%;
- 	margin-top:6px !important;
+	margin-top:6px !important;
+ 	margin-left:6px !important;
 	color:#ffffff !important;
 }
 
@@ -253,6 +302,20 @@ body {
 	border:1px solid #070707 !important;
 }
 
+.onyx-button.greenButton:active:hover:not([disabled]) {
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #45a845 ), to( #1ad838 )) !important;
+	background-image: -webkit-linear-gradient( #45a845 , #1ad838 )  !important; 
+	background-image:    -moz-linear-gradient( #45a845 , #1ad838 )  !important; 
+	background-image:     -ms-linear-gradient( #45a845 , #1ad838 )  !important;  
+	background-image:      -o-linear-gradient( #45a845 , #1ad838 )  !important; 
+	background-image:         linear-gradient( #45a845 , #1ad838 )  !important;
+	border:1px solid #070707 !important;
+
+}
+
+.onyx-button.phdButton:active:hover:not([disabled]) {
+	text-shadow: 0px 2px 2px rgba(0,0,0,.3) !important;
+}
 
 .orangeButton {
 	background-image: -webkit-gradient(linear, left top, left bottom, from( #f1a43a ), to( #f39804 )) !important;
@@ -261,6 +324,16 @@ body {
 	background-image:     -ms-linear-gradient( #f1a43a , #f39804 )  !important;  
 	background-image:      -o-linear-gradient( #f1a43a , #f39804 )  !important; 
 	background-image:         linear-gradient( #f1a43a , #f39804 )  !important;
+	border:1px solid #070707 !important;
+}
+
+.onyx-button.orangeButton:active:hover:not([disabled]) {
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #ec8906 ), to( #d89232 )) !important;
+	background-image: -webkit-linear-gradient( #ec8906 , #d89232 )  !important; 
+	background-image:    -moz-linear-gradient( #ec8906 , #d89232 )  !important; 
+	background-image:     -ms-linear-gradient( #ec8906 , #d89232 )  !important;  
+	background-image:      -o-linear-gradient( #ec8906 , #d89232 )  !important; 
+	background-image:         linear-gradient( #ec8906 , #d89232 )  !important;
 	border:1px solid #070707 !important;
 }
 
@@ -295,4 +368,9 @@ input.errorPlaceholder::-ms-placeholder, textarea.errorPlaceholder::-ms-placehol
 	-webkit-backface-visibility: hidden !important;
 }
 
-
+p.instruction {
+	color:#ffffff !important;
+	font-weight:500;
+	font-size:0.8em;
+	margin:10px !important;
+}
