@@ -71,7 +71,7 @@ enyo.kind({
 	refreshIt : function(){
 		console.log('doing refresh');
 		this.$.favList.setScrollTop(0);
-		document.body.scrollTop = 2;
+		document.body.scrollTop = 1;
 		document.body.scrollTop = 0;
 		this.populateList();
 	},
@@ -81,7 +81,6 @@ enyo.kind({
 	},
 	listItemTapped: function(inSender, inEvent) {
 		console.log("!");
-
 	},
 	setupItem : function(inSender, inEvent) {
 		var i = inEvent.index;

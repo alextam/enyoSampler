@@ -28,11 +28,9 @@ enyo.kind({
 						classes:'inflatePadding',
 						components: [
 						{
-							 
 							tag:"p",
 							classes:"instruction",
 							content:"Please enter your address to locate your delivery address accurately.",
-
 						},
 						{ 
 							tag:"div",
@@ -183,7 +181,6 @@ enyo.kind({
 											placeholder: "Optional", 
 											onfocus:"zoomToInput",
 											onblur:"resetZoomFromInput",
-											 
 				 						},
 									]
 								},
@@ -226,19 +223,20 @@ enyo.kind({
  		switch(inSender.name) {
  			case "txtSuburb":
  				this.$.createAccountScroll.setScrollTop(0);
- 				this.$.createAccountScroll.setScrollTop(1050);
+ 				this.$.createAccountScroll.setScrollTop(180);
  			break;
  			case "txtComplex":
  				this.$.createAccountScroll.setScrollTop(0);
- 				this.$.createAccountScroll.setScrollTop(1050);
+ 				this.$.createAccountScroll.setScrollTop(180);
  			break;
  			//inSender.focus();
  		}
  	},
  	resetZoomFromInput : function(inSender, inEvent) {
  		//this.$.createAccountScroll.setScrollTopY(0);
+ 		inEvent.preventDefault();
+ 		inSender.hasNode().blur();
  		this.$.createAccountScroll.setScrollTop(0);
- 		//inSender.hasNode().blur();
  	},
  	registerAddress: function(inSender, inEvent) {
 		alert('registerAddress');	

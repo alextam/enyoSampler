@@ -143,9 +143,11 @@ enyo.kind({
 		this.$.heavyList.refreshIt();
 		this.$.favList.refreshIt();
 		// reflowing panels recalculates and repaint the panel internally.
+		// this.$.AppPanels.reflow(); <-- cant use this twice.
 		this.$.favListPanel.reflow();
 		this.$.benchMarkListPanel.reflow();
 		this.$.heavyPanel.reflow();
+
 	},
 	handleFlick : function(inSender, inEvent ){
 		// Temporary work around to handle Gesture on android 
@@ -163,7 +165,6 @@ enyo.kind({
 	
 	handlePanelChanged : function(inSender, inEvent) {
 		this.updateTabMenu( inEvent.toIndex );
-		 
 	},
 	
 });

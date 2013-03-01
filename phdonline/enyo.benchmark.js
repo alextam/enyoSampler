@@ -79,6 +79,7 @@ enyo.kind({
 	resetList : function(inSender, inEvent) {
 		inSender.hasNode().blur();
 		this.search();
+		this.$.parent.reflow();
 	},
 	setupItem : function(inSender, inEvent) {
 		var i = inEvent.index;
@@ -92,7 +93,7 @@ enyo.kind({
 	refreshIt : function(){
 		console.log('doing refresh');
 		this.$.benchMarkList.setScrollTop(0);
-		document.body.scrollTop = 2;
+		document.body.scrollTop = 1;
 		document.body.scrollTop = 0;
 	},
 	search: function(inSender, inEvent) {
