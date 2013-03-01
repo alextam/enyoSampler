@@ -1,3 +1,9 @@
+/************************************************************************/
+/* Form Handling in android is different, from IOS, they do not have    */
+/* zoom to focus feature, so, we have to bind onFocus and Scroll T  o   */
+/* the area. Only apply this rule, when the form input element is below */
+/* 50%.                                                                 */
+/************************************************************************/
 enyo.kind({
 	name: "register.address",
 	kind: "FittableRows", 
