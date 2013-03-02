@@ -51,7 +51,7 @@ enyo.kind({
 				   				{
 									 kind: "onyx.PickerDecorator", 
 									 name: "cboStreetPrefix",
-									 classes:"selectDecorator resetBottom roundedTop iconArrow inputFix",
+									 classes:"selectDecorator resetBottom roundedTop icoArrow down inputFix",
 									 onSelect: "pickerHandler",
 									 components: [
 										{
@@ -123,7 +123,7 @@ enyo.kind({
 								{
 									 kind: "onyx.PickerDecorator", 
 									 name: "cboState",
-									 classes:"selectDecorator resetBottom resetTop roundedTop roundedBottom iconArrow inputFix",
+									 classes:"selectDecorator resetBottom resetTop roundedTop roundedBottom icoArrow down inputFix",
 									 onSelect: "pickerHandler",
 									 components: [
 										{
@@ -224,7 +224,6 @@ enyo.kind({
 		
  	},
  	zoomToInput : function (inSender, inEvent) {
- 		//
  		// console.log(inSender);
  		switch(inSender.name) {
  			case "txtSuburb":
@@ -248,6 +247,7 @@ enyo.kind({
 		alert('registerAddress');	
  	},
  	handleBtnBack : function(inSender, inEvent) {
+ 		inEvent.preventDefault();
  		new main.app().renderInto( document.body );
  	},
  	

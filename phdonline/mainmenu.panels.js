@@ -6,14 +6,36 @@ enyo.kind({
 		{
 			kind: "onyx.Toolbar",
 			layoutKind: "FittableColumnsLayout",
-			classes:"phdStd45px",			
-				components: [
- 					{
- 						content: "Actual Header", 
- 						fit:true, 
- 						style:'text-align:center'
- 					},
-				]
+			classes:"phdStd45px",
+			style:"padding:0px !important",			
+			components: [
+					{
+						tag:"h1",
+						classes:"toolBarHeader",
+						content: "Header", 
+						fit:true, 
+					},
+					{
+						kind: "onyx.MenuDecorator", 
+						ontap:"handleMenuPop",
+						onSelect: "itemSelected", 
+						style:"margin-top:5px !important",
+						components: [
+							{content: "menu"},
+							{
+								kind: "onyx.Menu",
+								floating: true,
+								name:"pullDownMenu",
+ 								components: [
+									{content: "Favorites"},
+									{classes: "onyx-menu-divider"},
+									{content: "Recents"},
+									{classes: "onyx-menu-divider"},
+									{content: "Exit App"}
+								]}
+						]
+					},
+			]
 		},
 		{
 			kind: "Scroller", 
@@ -100,12 +122,10 @@ enyo.kind({
 					name:"heavyPanel",
 				},
 				{
-					content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum dolor eu turpis aliquam vitae vestibulum mi luctus. Sed commodo arcu in libero placerat non fermentum orci porta. Duis commodo elementum tellus, nec egestas arcu sagittis ut. Aenean nulla urna, imperdiet quis venenatis at, pulvinar vitae libero. Maecenas congue libero a nulla commodo et volutpat magna ultrices. Aliquam tristique, eros gravida accumsan lacinia, purus nisl tristique odio, eget consequat diam dui in eros. Nulla sed nisl lorem. Aliquam sit amet vehicula nunc. Etiam eros ante, consequat sed rutrum ut, mollis in lacus. Nam malesuada lorem quis elit pharetra at ultrices justo euismod. Fusce at diam quis nulla tincidunt posuere. Mauris sit amet mauris odio. Mauris urna enim, aliquam et suscipit ac, ultrices vel nibh. Ut condimentum, ante ac feugiat facilisis, magna neque vehicula risus, ac fermentum nulla neque rhoncus mauris. Sed a lacus mi, nec accumsan est.", 
-					style:"background:green;"
+					name:"specialOrderPanel",
 				},
 				{
-					content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum dolor eu turpis aliquam vitae vestibulum mi luctus. Sed commodo arcu in libero placerat non fermentum orci porta. Duis commodo elementum tellus, nec egestas arcu sagittis ut. Aenean nulla urna, imperdiet quis venenatis at, pulvinar vitae libero. Maecenas congue libero a nulla commodo et volutpat magna ultrices. Aliquam tristique, eros gravida accumsan lacinia, purus nisl tristique odio, eget consequat diam dui in eros. Nulla sed nisl lorem. Aliquam sit amet vehicula nunc. Etiam eros ante, consequat sed rutrum ut, mollis in lacus. Nam malesuada lorem quis elit pharetra at ultrices justo euismod. Fusce at diam quis nulla tincidunt posuere. Mauris sit amet mauris odio. Mauris urna enim, aliquam et suscipit ac, ultrices vel nibh. Ut condimentum, ante ac feugiat facilisis, magna neque vehicula risus, ac fermentum nulla neque rhoncus mauris. Sed a lacus mi, nec accumsan est.", 
-					style:"background:blue;"
+					name:"textAreaPanel",
 				},
 			],
 
@@ -131,23 +151,30 @@ enyo.kind({
 		this.$.favList = new fav.selection(); 
 		this.$.benchMarkList = new enyo.benchmark();
 		this.$.heavyList = new enyo.heavy();
-
+		this.$.specialOrder = new special.order();
+		this.$.textArea = new enyo.textarea();
+		
 		this.$.favListPanel.addControl( this.$.favList );
 		this.$.benchMarkListPanel.addControl( this.$.benchMarkList );
 		this.$.heavyPanel.addControl( this.$.heavyList );
+		this.$.specialOrderPanel.addControl( this.$.specialOrder );
+		this.$.textAreaPanel.addControl( this.$.textArea );
 		this.$.AppPanels.refresh();
+		
  	},
 	updateTabMenu : function(index) {
 		this.$.tabScroller.setScrollLeft(index * 200);
 		this.$.tabMenu.setActive( this.$.tabMenu.children[index] );
+		this.$.benchMarkList.refreshIt();
 		this.$.heavyList.refreshIt();
 		this.$.favList.refreshIt();
+
 		// reflowing panels recalculates and repaint the panel internally.
 		// this.$.AppPanels.reflow(); <-- cant use this twice.
 		this.$.favListPanel.reflow();
 		this.$.benchMarkListPanel.reflow();
 		this.$.heavyPanel.reflow();
-
+		this.$.textAreaPanel.reflow();
 	},
 	handleFlick : function(inSender, inEvent ){
 		// Temporary work around to handle Gesture on android 
@@ -162,7 +189,14 @@ enyo.kind({
 	handleRadioTabActivate : function(inSender, inEvent ){
 		//HandleRadioTab Do nothing.
 	},
-	
+	handleMenuPop : function(inSender, inEvent ){
+		inEvent.preventDefault();
+		// Always force floating mode for popupmenu as it will repaint.
+		this.$.pullDownMenu.show();
+	},
+	itemSelected : function(inSender, inEvent ){
+		alert(inEvent.originator.content);
+	},
 	handlePanelChanged : function(inSender, inEvent) {
 		this.updateTabMenu( inEvent.toIndex );
 	},

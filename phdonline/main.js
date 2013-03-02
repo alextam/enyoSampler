@@ -5,9 +5,9 @@ enyo.kind({
  	components: [
  		{   	
 			kind: "Scroller",
+			name: "mainScroll",
 			fit:true,
 			touch:true, 
-			name: "mainScroll",
 			thumb:false,
 			ondrag:"resetZoomFromInput",
 			components: [
@@ -129,7 +129,7 @@ enyo.kind({
 				   		{
 				   			tag:"p",
 				   			style:"height:30px;",
-				   			ontap:"forgetPassword",
+				   			onclick:"forgetPassword",
 		 		   			allowHtml: true,
 		 		   			content: "<a href='#' class='whitelink'>Forget Password ? &rarr;</a>",
 				   		},
@@ -175,6 +175,7 @@ enyo.kind({
 		}
  	},
  	forgetPassword : function(inSender,inEvent){
+ 		inEvent.preventDefault();
  		alert('forgetPassword');
  	},
 	carouselLoad: function(inSender, inEvent){
@@ -188,7 +189,6 @@ enyo.kind({
  		inSender.focus();
  		this.$.imgCarousel.hide();
  		this.$.mainScroll.setScrollTop(0);
- 		//this.$.mainScroll.setScrollTop(500);
  	},
  	resetZoomFromInput: function(inSender,inEvent){
  		//inEvent.preventDefault();
@@ -197,6 +197,7 @@ enyo.kind({
  		this.$.mainScroll.setScrollTop(0);
  	},
 	signIn : function(inSender,inEvent){
+		inEvent.preventDefault();
   		SimpleValidator.validateForm($('#formLogin'), true, onSuccessValidate, onErrorValidate );
 		function onSuccessValidate(successFieldsID){
 			new mainmenu.panels().renderInto(document.body);
@@ -209,6 +210,7 @@ enyo.kind({
 		}
 	},
 	createAccount : function(inSender, inEvent) {
+		inEvent.preventDefault();
 		new register.address().renderInto( document.body );
 	}
 });
