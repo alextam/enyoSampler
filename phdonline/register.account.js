@@ -35,7 +35,7 @@ enyo.kind({
 						components: [
 						{ 
 							tag:"div",
-							id:"registerAccountForm",
+							name:"registerAccountForm",
 				   			kind: "FittableRows",
 				   			components:[
 				   				{
@@ -56,7 +56,7 @@ enyo.kind({
 											onfocus:"zoomToInput",
 											onblur:"resetZoomFromInput",
 											attributes: {
-												required: "required"	
+												required: "email"	
 											} 
 				 						},
 									]
@@ -75,7 +75,7 @@ enyo.kind({
 											onfocus:"zoomToInput",
 											onblur:"resetZoomFromInput",
 											attributes: {
-												required: "required"	
+												required: "password"	
 											} 
 				 						},
 									]
@@ -94,7 +94,7 @@ enyo.kind({
 											onfocus:"zoomToInput",
 											onblur:"resetZoomFromInput",
 											attributes: {
-												required: "required"	
+												required: "cpassword",
 											} 
 				 						},
 									]
@@ -150,6 +150,34 @@ enyo.kind({
 								},
 								{
 									tag:"h1",
+									content:"Enter Lot/House No",
+									classes:"orangeHeader",
+								},
+								{
+						   			kind: "onyx.InputDecorator", 
+						   			classes:"inputDecorator resetBottom resetTop roundedTop roundedBottom",
+						   			components: [
+										{
+											kind: "Input",
+				 							id:"txtUnitNo",
+				 							name:"txtUnitNo",
+				 							classes:"inputFix",
+											placeholder: "Lot/House No",
+											onfocus:"zoomToInput",
+											onblur:"resetZoomFromInput", 
+											attributes: {
+												required: "required"	
+											} 
+											 
+				 						},
+									]
+								},
+								{
+									tag:"div",
+									style:"height:10px",
+								},
+								{
+									tag:"h1",
 									content:"Delivery Address",
 									classes:"orangeHeader",
 								},
@@ -159,10 +187,10 @@ enyo.kind({
 						   			components: [
 										{
 											kind: "Input",
-				 							id:"txtUnit",
-				 							name:"txtUnit",
+				 							id:"txtStreetUnit",
+				 							name:"txtStreetUnit",
 				 							classes:"inputFix",
-											placeholder: "Lot/House No", 
+											placeholder: "Street Unit", 
 											attributes: {
 												readonly: "true"	
 											} 
@@ -266,7 +294,17 @@ enyo.kind({
 	],
 	create: function(inSender, inEvent) {
 		this.inherited(arguments);
-		
+		if ( localStorage.getObject("MOBILEPHDONLINE.APPDATA.TEMPSTORAGE") != null ){
+			//AppStorage Available.
+			this.populateFields( localStorage.getObject("MOBILEPHDONLINE.APPDATA.TEMPSTORAGE") );
+		}
+ 	},
+ 	populateFields : function( storageAddress ){
+ 		this.$.txtStreetUnit.setValue( storageAddress.cboStreetUnit );
+		this.$.txtStreetName.setValue( storageAddress.txtStreetName );
+		this.$.txtState.setValue( storageAddress.cboState );
+		this.$.txtSuburb.setValue( storageAddress.txtSuburb );
+		this.$.txtComplex.setValue( storageAddress.txtComplex );
  	},
  	zoomToInput : function (inSender, inEvent) {
  		// console.log(inSender);
@@ -278,6 +316,11 @@ enyo.kind({
  			case "txtFullName":
  				this.$.createAccountScroll.setScrollTop(0);
  				this.$.createAccountScroll.setScrollTop(180);
+ 			break;
+
+ 			case "txtUnitNo":
+ 				this.$.createAccountScroll.setScrollTop(0);
+ 				this.$.createAccountScroll.setScrollTop(300);
  			break;
  		}
  	},
@@ -291,10 +334,36 @@ enyo.kind({
  		this.$.createAccountScroll.setScrollTop(0);
  	},
  	registerAll: function(inSender, inEvent) {
-		alert('register account');	
+ 		var self = this;
+ 		inEvent.preventDefault();
+ 		this.validateUtil = new enyo.validator(); 
+ 		var allValidComponents = this.validateUtil.validate(this.$.registerAccountForm,onSuccessValidate,onErrorValidate);
+		function onSuccessValidate(results){
+			var registerPayload = new Object();
+			registerPayload.txtEmail = self.$.txtEmail.getValue();  
+			registerPayload.txtPassword = self.$.txtPassword.getValue();
+			registerPayload.txtFullName = self.$.txtFullName.getValue();
+			registerPayload.txtContactNo = self.$.txtContactNo.getValue();
+			registerPayload.txtUnitNo = self.$.txtUnitNo.getValue();
+			registerPayload.txtStreetUnit = self.$.txtStreetUnit.getValue();
+			registerPayload.txtStreetName = self.$.txtStreetName.getValue();
+			registerPayload.txtState = self.$.txtState.getValue();
+			registerPayload.txtSuburb = self.$.txtSuburb.getValue();
+			registerPayload.txtComplex = self.$.txtComplex.getValue();
+
+			console.log('DONE..Payload is '+JSON.stringify(registerPayload));
+		}
+		function onErrorValidate(results){
+			alert("Please fill up the fields with valid input to proceed");
+			for (var i = 0; i < results.errors.length; i++) {
+				results.errors[i].controller.setValue("");
+				results.errors[i].controller.setAttribute("placeholder", results.errors[i].message);		
+			};		
+		}
+		//alert('register account');	
  	},
  	handleBtnBack : function(inSender, inEvent) {
- 		//inEvent.preventDefault();
+ 		inEvent.preventDefault();
  		new register.address().renderInto( document.body );
  	},
  	

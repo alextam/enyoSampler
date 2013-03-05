@@ -17,7 +17,7 @@ enyo.kind({
  						kind:'Button',
  						name:'btnBack',
  						ontap:'handleBtnBack',
- 						classes: "phdTinyLogo", 
+ 						classes:'phdTinyLogo', 
  						style:"margin-top:5px;width:154px;height:35px;"
  					}
 				]
@@ -40,6 +40,7 @@ enyo.kind({
 						},
 						{ 
 							tag:"div",
+							name:"registerAddressForm",
 							id:"registerAddressForm",
 				   			kind: "FittableRows",
 				   			components:[
@@ -61,7 +62,6 @@ enyo.kind({
 										{
 											 kind: "onyx.Picker", 
 											 name: "cboStreetUnit",
-											 onActivate:"handleCboActivated",
 											 classes : "fullWidth resetBottom resetTop roundedTop roundedBottom",
 											 components: [
 										 		
@@ -169,7 +169,7 @@ enyo.kind({
 											placeholder: "Optional", 
 											onfocus:"zoomToInput",
 											onblur:"resetZoomFromInput",
-											 
+											
 				 						},
 									]
 								},
@@ -190,6 +190,7 @@ enyo.kind({
 											placeholder: "Optional", 
 											onfocus:"zoomToInput",
 											onblur:"resetZoomFromInput",
+											
 				 						},
 									]
 								},
@@ -269,18 +270,30 @@ enyo.kind({
 	pickerHandler : function (inSender, inEvent) {
 		//inEvent.preventDefault();
 	},
-	handleCboActivated : function (inSender, inEvent) {
-
-		console.log(inEvent.originator);
-	},
- 	resetZoomFromInput : function(inSender, inEvent) {
+	resetZoomFromInput : function(inSender, inEvent) {
  		inEvent.preventDefault();
  		inSender.hasNode().blur();
  		this.$.createAccountScroll.setScrollTop(0);
  	},
  	registerAddress: function(inSender, inEvent) {
+ 		var self = this;
  		inEvent.preventDefault();
- 		
+ 		console.log("Do Check Area of Service...");
+ 		this.validateUtil = new enyo.validator(); 
+ 		var allValidComponents = this.validateUtil.validate(this.$.registerAddressForm,onValidateSuccess,onValidateFail);
+ 		function onValidateSuccess(results){
+ 			self.storeLocalData();
+ 			new register.account().renderInto( document.body );
+ 		}
+ 		function onValidateFail(results){
+ 			alert("Please fill up the fields with valid input to proceed");
+			for (var i = 0; i < results.errors.length; i++) {
+				results.errors[i].controller.setValue("");
+				results.errors[i].controller.setAttribute("placeholder", results.errors[i].message);		
+			};	
+ 		}
+  	},
+ 	storeLocalData: function(){
  		var storageAddress = new Object();
  		storageAddress.cboStreetUnit = this.$.cboStreetUnit.selected.content;
  		storageAddress.txtStreetName = this.$.txtStreetName.getValue();
@@ -289,11 +302,8 @@ enyo.kind({
  		storageAddress.txtComplex = this.$.txtComplex.getValue();
  		localStorage.setObject("MOBILEPHDONLINE.APPDATA.TEMPSTORAGE",storageAddress);
  		console.log("Stored : "+ JSON.stringify(localStorage.getObject("MOBILEPHDONLINE.APPDATA.TEMPSTORAGE")) );
- 		alert("Do Check Area of Service...");
- 		this.$.cboStreetUnit.setSelected();
- 		new register.account().renderInto( document.body );	
  	},
- 	handleBtnBack : function(inSender, inEvent) {
+ 	handleBtnBack: function(inSender, inEvent) {
  		inEvent.preventDefault();
  		localStorage.setObject("MOBILEPHDONLINE.APPDATA.TEMPSTORAGE",null);
  		new main.app().renderInto( document.body );

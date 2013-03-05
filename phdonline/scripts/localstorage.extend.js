@@ -1,3 +1,9 @@
+/*******************************************************************/
+/*  This special prototype util is to extend localStorage to store */
+/*  more complex datatype like object.                             */
+/*  Usage : localStorage.setObject(param);                         */
+/*  Usage : localStorage.getObject(param);                         */
+/*******************************************************************/
 Storage.prototype.setObject = function(key, value) {
     this.setItem(key, JSON.stringify(value));
 }

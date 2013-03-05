@@ -12,7 +12,6 @@ enyo.kind({
 			ondrag:"resetZoomFromInput",
 			components: [
 			{
-					id:"formLogin",
 					classes:'inflatePadding',
 					components: [
 						{
@@ -56,6 +55,7 @@ enyo.kind({
 				   		},
 				   		{
 				   			tag:"div",
+							name:"formLogin",
 				   			kind: "FittableRows",
 				   			components:[
 					   			{
@@ -198,15 +198,19 @@ enyo.kind({
  	},
 	signIn : function(inSender,inEvent){
 		inEvent.preventDefault();
-  		SimpleValidator.validateForm($('#formLogin'), true, onSuccessValidate, onErrorValidate );
-		function onSuccessValidate(successFieldsID){
+		this.validateUtil = new enyo.validator(); 
+ 		var allValidComponents = this.validateUtil.validate(this.$.formLogin,onSuccessValidate,onErrorValidate);
+		function onSuccessValidate(results){
+			//console.log(results);
 			new mainmenu.panels().renderInto(document.body);
+			console.log('Do actual login and retrieve user id');
 		}
-		function onErrorValidate(correctFieldsID, errorFieldsID){
-			$.each(errorFieldsID, function(index, fields) {
-				// $(eval(fields)).addClass('errorInput');
-			});
-			alert("Please fill up the fields with valid input to proceed");	
+		function onErrorValidate(results){
+			alert("Please fill up the fields with valid input to proceed");
+			for (var i = 0; i < results.errors.length; i++) {
+				results.errors[i].controller.setValue("");
+				results.errors[i].controller.setAttribute("placeholder", results.errors[i].message);		
+			};		
 		}
 	},
 	createAccount : function(inSender, inEvent) {
