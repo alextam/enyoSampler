@@ -32,9 +32,11 @@ enyo.kind({
 	},
 	refreshIt : function(){
 		console.log('doing refresh');
+		this.$.heavyList.setScrollTop(1);
 		this.$.heavyList.setScrollTop(0);
 		document.body.scrollTop = 1;
 		document.body.scrollTop = 0;
+
 	},
 	rendered : function(inSender,inEvent){
 		this.inherited(arguments);

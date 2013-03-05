@@ -190,9 +190,13 @@ enyo.kind({
 		//HandleRadioTab Do nothing.
 	},
 	handleMenuPop : function(inSender, inEvent ){
-		inEvent.preventDefault();
+		//inEvent.preventDefault();
 		// Always force floating mode for popupmenu as it will repaint.
-		this.$.pullDownMenu.show();
+		$("#floatingLayer").show();
+		var p = this.$[inSender.popup];
+		if (p) {
+			p.show();
+		}
 	},
 	itemSelected : function(inSender, inEvent ){
 		alert(inEvent.originator.content);

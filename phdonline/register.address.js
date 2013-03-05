@@ -50,8 +50,7 @@ enyo.kind({
 								},
 				   				{
 									 kind: "onyx.PickerDecorator", 
-									 name: "cboStreetPrefix",
-									 classes:"selectDecorator resetBottom roundedTop icoArrow down inputFix",
+ 									 classes:"selectDecorator resetBottom roundedTop icoArrow down inputFix",
 									 onSelect: "pickerHandler",
 									 components: [
 										{
@@ -61,40 +60,44 @@ enyo.kind({
 										},
 										{
 											 kind: "onyx.Picker", 
+											 name: "cboStreetUnit",
+											 onActivate:"handleCboActivated",
 											 classes : "fullWidth resetBottom resetTop roundedTop roundedBottom",
 											 components: [
-													{content: 'JALAN', active:true},
-													{content: 'LORONG'},
-													{content: 'CHANGKAT'},
-													{content: 'PINGGIRAN'},
-													{content: 'MEDAN'},
-													{content: 'SOLOK'},
-													{content: 'PERSIARAN'},
-													{content: 'LEBOH'},
-													{content: 'SIMPANGAN'},
-													{content: 'SELEKOH'},
-													{content: 'PINTASAN'},
-													{content: 'PERSISIRAN'}, 
-													{content: 'PERKARANGAN'}, 
-													{content: 'PENGKALAN'}, 
-													{content: 'LURAH'}, 
-													{content: 'LINTANG'}, 
-													{content: 'LINGKUNGAN'}, 
-													{content: 'LINGKARAN'}, 
-													{content: 'LENGKUNG'}, 
-													{content: 'LENGKOK'}, 
-													{content: 'LEBUHRAYA'}, 
-													{content: 'LEBUH'}, 
-													{content: 'LANGGAK'}, 
-													{content: 'LAMAN'}, 
-													{content: 'KAMPUNG'}, 
-													{content: 'GERBANG'}, 
-													{content: 'DATARAN'}, 
-													{content: 'BULATAN'},
-													{content: 'LALUAN'},
-													{content: 'TINGKAT'},
-													{content: 'OTHER'},
-											]
+										 		
+									 					{content: 'JALAN',active:true},
+														{content: 'LORONG'},
+														{content: 'CHANGKAT'},
+														{content: 'PINGGIRAN'},
+														{content: 'MEDAN'},
+														{content: 'SOLOK'},
+														{content: 'PERSIARAN'},
+														{content: 'LEBOH'},
+														{content: 'SIMPANGAN'},
+														{content: 'SELEKOH'},
+														{content: 'PINTASAN'},
+														{content: 'PERSISIRAN'}, 
+														{content: 'PERKARANGAN'},
+														{content: 'PENGKALAN'},
+														{content: 'LURAH'},
+														{content: 'LINTANG'}, 
+														{content: 'LINGKUNGAN'}, 
+														{content: 'LINGKARAN'}, 
+														{content: 'LENGKUNG'},
+														{content: 'LENGKOK'},
+														{content: 'LEBUHRAYA'},
+														{content: 'LEBUH'},
+														{content: 'LANGGAK'},
+														{content: 'LAMAN'},
+														{content: 'KAMPUNG'},
+														{content: 'GERBANG'},
+														{content: 'DATARAN'},
+														{content: 'BULATAN'},
+														{content: 'LALUAN'},
+														{content: 'TINGKAT'},
+														{content: 'OTHER'},
+									 			
+											],
 										},
 								]},
 								{
@@ -122,7 +125,6 @@ enyo.kind({
 								},
 								{
 									 kind: "onyx.PickerDecorator", 
-									 name: "cboState",
 									 classes:"selectDecorator resetBottom resetTop roundedTop roundedBottom icoArrow down inputFix",
 									 onSelect: "pickerHandler",
 									 components: [
@@ -134,6 +136,7 @@ enyo.kind({
 
 										{
 											 kind: "onyx.Picker", 
+											 name: "cboState",
 											 classes : "fullWidth resetBottom resetTop roundedTop roundedBottom",
 											 components: [
 													{content: 'WILAYAH PERSEKUTUAN', active:true},
@@ -221,33 +224,78 @@ enyo.kind({
 	],
 	create: function(inSender, inEvent) {
 		this.inherited(arguments);
-		
+		// From previous page.
+		if ( localStorage.getObject("MOBILEPHDONLINE.APPDATA.TEMPSTORAGE") != null ){
+			//AppStorage Available.
+			this.populateFields( localStorage.getObject("MOBILEPHDONLINE.APPDATA.TEMPSTORAGE") );
+		}
  	},
+ 	rendered: function(inSender,inEvent) {
+ 		this.inherited(arguments); 		 
+ 	},
+ 	populateFields : function( storageAddress ){
+ 		this.$.cboStreetUnit.setSelected(this.findMatchingItem( this.$.cboStreetUnit.controls, storageAddress.cboStreetUnit) );
+		this.$.txtStreetName.setValue( storageAddress.txtStreetName );
+ 		this.$.txtSuburb.setValue( storageAddress.txtSuburb );
+ 		this.$.txtComplex.setValue( storageAddress.txtComplex );
+ 		this.$.cboState.setSelected( this.findMatchingItem( this.$.cboState.controls, storageAddress.cboState) );
+   	},
+   	findMatchingItem : function( controls, stringResults ){
+   		var resultKey;
+   		var len = controls.length;
+   		for(var i = 1;i <= len;i++){
+   			if (controls[i].content === stringResults) {
+   				resultKey = controls[i];
+   				break;
+   			}
+   		}
+   		return resultKey;
+   	},
  	zoomToInput : function (inSender, inEvent) {
  		// console.log(inSender);
  		switch(inSender.name) {
  			case "txtSuburb":
  				this.$.createAccountScroll.setScrollTop(0);
  				this.$.createAccountScroll.setScrollTop(180);
+ 				this.$.txtSuburb.focus();
  			break;
  			case "txtComplex":
  				this.$.createAccountScroll.setScrollTop(0);
  				this.$.createAccountScroll.setScrollTop(180);
+ 				this.$.txtComplex.focus();
  			break;
- 			//inSender.focus();
  		}
  	},
+	pickerHandler : function (inSender, inEvent) {
+		//inEvent.preventDefault();
+	},
+	handleCboActivated : function (inSender, inEvent) {
+
+		console.log(inEvent.originator);
+	},
  	resetZoomFromInput : function(inSender, inEvent) {
- 		//this.$.createAccountScroll.setScrollTopY(0);
  		inEvent.preventDefault();
  		inSender.hasNode().blur();
  		this.$.createAccountScroll.setScrollTop(0);
  	},
  	registerAddress: function(inSender, inEvent) {
-		alert('registerAddress');	
+ 		inEvent.preventDefault();
+ 		
+ 		var storageAddress = new Object();
+ 		storageAddress.cboStreetUnit = this.$.cboStreetUnit.selected.content;
+ 		storageAddress.txtStreetName = this.$.txtStreetName.getValue();
+ 		storageAddress.cboState  = this.$.cboState.selected.content;
+ 		storageAddress.txtSuburb = this.$.txtSuburb.getValue();
+ 		storageAddress.txtComplex = this.$.txtComplex.getValue();
+ 		localStorage.setObject("MOBILEPHDONLINE.APPDATA.TEMPSTORAGE",storageAddress);
+ 		console.log("Stored : "+ JSON.stringify(localStorage.getObject("MOBILEPHDONLINE.APPDATA.TEMPSTORAGE")) );
+ 		alert("Do Check Area of Service...");
+ 		this.$.cboStreetUnit.setSelected();
+ 		new register.account().renderInto( document.body );	
  	},
  	handleBtnBack : function(inSender, inEvent) {
  		inEvent.preventDefault();
+ 		localStorage.setObject("MOBILEPHDONLINE.APPDATA.TEMPSTORAGE",null);
  		new main.app().renderInto( document.body );
  	},
  	
