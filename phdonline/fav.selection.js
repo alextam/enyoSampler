@@ -11,7 +11,7 @@ enyo.kind({
 				{
 					kind: "onyx.Spinner",
 					name:"loadingDiv",
-					style:"margin-top:45%;height:65px;color:#ffffff",
+					style:"margin-top:45%;height:65px;color:#ffffff"
 				}
 			]
 		},
@@ -35,20 +35,20 @@ enyo.kind({
 									{
 										tag:"h1",
 										style:"font-size:1em;margin:2px !important",
-										name:"title",
+										name:"title"
 									},
 									{
 										tag:"p",
 										style:"font-size:0.8em;margin:2px !important;color:#666666",
 										allowHtml:true,
-										name:"description",
-									},
-								], 
+										name:"description"
+									}
+								] 
 							} 
 						]
 					}
 				]
-		},
+		}
 	],
 	db: [
 		{"title":"My Favourite #1","description":"Special Meal 3 - 9&Prime; Thin Crust Classic Chicken, 9&Prime; Chicken Hawa"},
@@ -60,7 +60,7 @@ enyo.kind({
 		{"title":"My History #2","description":"Special Meal 3 - 9&Prime; Thin Crust Classic Chicken, 9&Prime; Chicken Hawa"},
 		{"title":"My History #3","description":"Special Meal 3 - 9&Prime; Thin Crust Classic Chicken, 9&Prime; Chicken Hawa"},
 		{"title":"My History #4","description":"Special Meal 3 - 9&Prime; Thin Crust Classic Chicken, 9&Prime; Chicken Hawa"},
-		{"title":"My History #5","description":"Special Meal 3 - 9&Prime; Thin Crust Classic Chicken, 9&Prime; Chicken Hawa"},
+		{"title":"My History #5","description":"Special Meal 3 - 9&Prime; Thin Crust Classic Chicken, 9&Prime; Chicken Hawa"}
 	],
 	// Sample Data in form of Array; the real thing will have some callback/ajax that returns actual data
 	create: function() {
@@ -80,8 +80,8 @@ enyo.kind({
  		this.$.favList.reset();
 	},
 	listItemTapped: function(inSender, inEvent) {
-		console.log("!");
-	},
+		//Do Nothing yet
+ 	},
 	setupItem : function(inSender, inEvent) {
 		var i = inEvent.index;
 		var dataTitle = this.db[i].title;
@@ -90,5 +90,5 @@ enyo.kind({
 		this.$.title.setContent(dataTitle);
 		this.$.description.setContent(dataDescription);
 		this.$.loadingDiv.hide();		 
-	}, 
+	}
 });

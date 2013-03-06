@@ -10,14 +10,27 @@ body {
 	background-color: #1c1c1c;
 }
 
-.iconArrow {
+.icoArrow {
 	background:url('../img/iconPacks.png') no-repeat !important;
-	background-position: 100% 0px !important;
 	background-size: 42px 168px !important;
 	width:100% !important;
 	height:42px !important;
 	background-color:#000 !important;
 }
+
+.right {
+	background-position: 100% 0px !important;
+}
+
+.down {
+	background-position: 100% -126px !important;
+}
+
+.up {
+	background-position: 100% -84px !important;
+}
+
+
 
 .phdBigLogo {
 	background:url('../img/phdlogo.png') no-repeat;
@@ -242,6 +255,16 @@ body {
 	border:1px solid #191919 !important;
 }
 
+.selectDecorator h1{
+	color:#fff;
+	font-size:1em;
+	text-indent: 15px;
+}
+
+.drawerBg {
+	background-color:#f2f2f2;
+}
+
 .onyx-picker .onyx-menu-item {
  	text-align:left !important;
  	font-weight: 600;
@@ -263,8 +286,8 @@ h1.orangeHeader {
 	font-weight: 600;
 	text-transform: uppercase;
 	color:#ff9d0B;
-	margin-top:6px !important;
-	margin-bottom:6px !important;
+	margin-top:8px !important;
+	margin-bottom:8px !important;
 } 
 
 .inputDecorator.onyx-input-decorator.onyx-focused input{
@@ -276,6 +299,26 @@ h1.orangeHeader {
 	margin-top:6px !important;
  	margin-left:6px !important;
 	color:#ffffff !important;
+}
+
+.drawerDecorator {
+	background: #fff;
+	width:90%;
+	border:none !important;
+}
+
+.drawerDecorator input {
+	width:97%;
+	color:#000000 !important; 
+	margin-top:6px !important;
+ 	margin-left:6px !important;
+ 	border:none !important;
+}
+
+.drawerDecorator.onyx-input-decorator.onyx-focused {
+	background-color: #ffffff !important;
+	color:#000000 !important; 
+	border:none !important;
 }
 
 .test {
@@ -381,3 +424,16 @@ input:focus, button,div {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
  }
+
+ .toolBarHeader {
+ 	font-size: 1em;
+ 	line-height: 2em;
+ 	text-align:center;
+ 	text-indent: 90px; 
+ }
+ 
+.steroid {
+	-webkit-transform: translate3d(0,0,0);
+  	-moz-transform: translate3d(0,0,0);
+  	-ms-transform: translate3d(0,0,0);
+}

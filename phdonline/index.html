@@ -6,20 +6,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="css/custom.css">
 	<script src="scripts/jquery.min.js" type="text/javascript"></script>
+	<script src="phonegap/cordova-2.4.0.js" type="text/javascript"></script>
 
 	<script src="enyo/enyo.js" type="text/javascript"></script>
-	<script src="scripts/simple.validator.js" type="text/javascript"></script>
 	<script src="scripts/localstorage.extend.js" type="text/javascript"></script>
 
 	<script src="lib/layout/package.js" type="text/javascript"></script>
 	<script src="lib/onyx/package.js" type="text/javascript"></script>
+	<script src="scripts/enyo.validator.js" type="text/javascript"></script>
+	<script src="scripts/enyo.base64.js" type="text/javascript"></script>
+	<script src="scripts/enyo.postman.js" type="text/javascript"></script>
+
 	<script src="main.js" type="text/javascript"></script>
 	<script src="register.address.js" type="text/javascript"></script>
 	<script src="register.account.js" type="text/javascript"></script>
 
 	<script src="mainmenu.panels.js" type="text/javascript"></script>
 	<script src="fav.selection.js" type="text/javascript"></script>
-	<script src="enyo.benchmark.js" type="text/javascript"></script>
+	<script src="meal.lister.js" type="text/javascript"></script>
 	<script src="enyo.heavy.js" type="text/javascript"></script>
 	<script src="special.order.js" type="text/javascript"></script>
 	<script src="enyo.textarea.js" type="text/javascript"></script>
@@ -28,7 +32,17 @@
 </head>
 <body>
 <script type="text/javascript">
-	new main.app().renderInto( document.body );
+	
+	//new main.app().renderInto( document.body );
+	var myAjaxUtil2 = new enyo.postman();
+	myAjaxUtil2.init("http://localhost",8000,1000);
+	myAjaxUtil2.postAuthTo("json/get",null,onAjaxPass,onAjaxFail,{contentType:"json",method:"get"});
+	function onAjaxPass(inSender,inResponse){
+		console.log(inResponse);
+	}
+	function onAjaxFail(inSender,inResponse){
+		alert("Fail!");
+	}
 </script>
 </body>
 </html>

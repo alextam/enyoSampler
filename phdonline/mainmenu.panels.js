@@ -13,7 +13,7 @@ enyo.kind({
 						tag:"h1",
 						classes:"toolBarHeader",
 						content: "Header", 
-						fit:true, 
+						fit:true 
 					},
 					{
 						kind: "onyx.MenuDecorator", 
@@ -34,7 +34,7 @@ enyo.kind({
 									{content: "Exit App"}
 								]}
 						]
-					},
+					}
 			]
 		},
 		{
@@ -53,7 +53,7 @@ enyo.kind({
  						components: [
 	 						{
 		 						tag: "div",
-	 	 						classes:"redBarGapper",
+	 	 						classes:"redBarGapper"
 		 					},
 		 					{
 		 						tag: "div",
@@ -68,34 +68,34 @@ enyo.kind({
 											{
 	 											content: "My Favourite",
 												active: true,
-												disabled: true,
+												disabled: true
 											},
 											{	
 												content: "Combo Meal",
-												disabled: true, 
+												disabled: true 
 											},
 											{	
 												content: "Ala Carte",
-												disabled: true,
+												disabled: true
 											},
 											{	
 												content: "Drinks",
-												disabled: true,
+												disabled: true
 											},
 											{	
 												content: "Pasta",
-												disabled: true,
-											},
+												disabled: true
+											}
 										]
-									},
+									}
 		 						]
 		 					},
 		 					{
 		 						tag: "div",
-	 	 						classes:"redBarGapper",
-		 					},
+	 	 						classes:"redBarGapper"
+		 					}
 	 					]
-	 				},
+	 				}
 				]
 		},
 		{
@@ -113,21 +113,21 @@ enyo.kind({
 			realtimeFit: false, 
 			components: [
 				{
-					name:"favListPanel",
+					name:"favListPanel"
 				},
 				{
-					name:"benchMarkListPanel",
+					name:"comboMealPanel"
 				},
 				{
-					name:"heavyPanel",
+					name:"heavyPanel"
 				},
 				{
-					name:"specialOrderPanel",
+					name:"specialOrderPanel"
 				},
 				{
-					name:"textAreaPanel",
-				},
-			],
+					name:"textAreaPanel"
+				}
+			]
 
 		},
 		{
@@ -135,8 +135,8 @@ enyo.kind({
 			layoutKind: "FittableColumnsLayout", 
 			classes:"phdStd45px",
 			components: [ 
-				{content:"Footer"},
-			],
+				{content:"Footer"}
+			]
 		}	
 	],
 	// Sample Data in form of Array; the real thing will have some callback/ajax that returns 
@@ -149,13 +149,13 @@ enyo.kind({
 		//To add external js files unit tested into some named div, just use addControl. 
 		//Add controls and function into app's hash this.$, so that, you can control the function within.
 		this.$.favList = new fav.selection(); 
-		this.$.benchMarkList = new enyo.benchmark();
+		this.$.mealList = new meal.lister();
 		this.$.heavyList = new enyo.heavy();
 		this.$.specialOrder = new special.order();
 		this.$.textArea = new enyo.textarea();
 		
 		this.$.favListPanel.addControl( this.$.favList );
-		this.$.benchMarkListPanel.addControl( this.$.benchMarkList );
+		this.$.comboMealPanel.addControl( this.$.mealList );
 		this.$.heavyPanel.addControl( this.$.heavyList );
 		this.$.specialOrderPanel.addControl( this.$.specialOrder );
 		this.$.textAreaPanel.addControl( this.$.textArea );
@@ -165,14 +165,14 @@ enyo.kind({
 	updateTabMenu : function(index) {
 		this.$.tabScroller.setScrollLeft(index * 200);
 		this.$.tabMenu.setActive( this.$.tabMenu.children[index] );
-		this.$.benchMarkList.refreshIt();
+		this.$.mealList.refreshIt();
 		this.$.heavyList.refreshIt();
 		this.$.favList.refreshIt();
 
 		// reflowing panels recalculates and repaint the panel internally.
 		// this.$.AppPanels.reflow(); <-- cant use this twice.
 		this.$.favListPanel.reflow();
-		this.$.benchMarkListPanel.reflow();
+		this.$.comboMealPanel.reflow();
 		this.$.heavyPanel.reflow();
 		this.$.textAreaPanel.reflow();
 	},
@@ -192,17 +192,16 @@ enyo.kind({
 	handleMenuPop : function(inSender, inEvent ){
 		//inEvent.preventDefault();
 		// Always force floating mode for popupmenu as it will repaint.
-		$("#floatingLayer").show();
-		var p = this.$[inSender.popup];
-		if (p) {
-			p.show();
-		}
+		console.log( inSender );
+		inSender.popup = inSender.controls[1];
+		inSender.popup.render();
+		inSender.popup.show();
 	},
 	itemSelected : function(inSender, inEvent ){
 		alert(inEvent.originator.content);
 	},
 	handlePanelChanged : function(inSender, inEvent) {
 		this.updateTabMenu( inEvent.toIndex );
-	},
+	}
 	
 });

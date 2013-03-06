@@ -17,7 +17,7 @@ enyo.kind({
 						{
 				   			tag:"div",
 				   			classes:"phdBigLogo",
-				   			style:"height:55px;",
+				   			style:"height:45px;margin-top:5px;margin-bottom:5px;"
 				   		},
 				   		{
 				   			kind:"ImageCarousel",
@@ -27,7 +27,7 @@ enyo.kind({
 				   			onerror:"error", 
 				   			onTransitionStart: "carouselTransitionStart", 
 				   			onTransitionFinish: "carouselTransitionFinish",
-				   			style:"height:186px",
+				   			style:"height:186px"
 		 		   		},
 				   		
 				   		{
@@ -38,20 +38,20 @@ enyo.kind({
 								{
 									tag:"div",
 									name:"adSelector0",
-									classes:"sliderBullet shadow",
+									classes:"sliderBullet shadow"
 									 
 								},
 								{
 									tag:"div",
 									name:"adSelector1",
-									classes:"sliderBullet shadow",
+									classes:"sliderBullet shadow"
 								},
 								{
 									tag:"div",
 									name:"adSelector2",
-									classes:"sliderBullet shadow",
-								},
-							],
+									classes:"sliderBullet shadow"
+								}
+							]
 				   		},
 				   		{
 				   			tag:"div",
@@ -73,8 +73,8 @@ enyo.kind({
 											attributes: {
 												required: "email"	
 											} 
-				 						},
-									],
+				 						}
+									]
 								},
 								{
 						   			kind: "onyx.InputDecorator", 
@@ -93,10 +93,10 @@ enyo.kind({
 												required: "password"	
 											} 
 											
-				 						},
-									],
-								},
-							],
+				 						}
+									]
+								}
+							]
 
 				   		},
 				   		
@@ -114,7 +114,7 @@ enyo.kind({
 									onclick: "createAccount"
 								},
 				   				{
-									fit:true,
+									fit:true
 								},
 								{
 									kind: "onyx.Button",
@@ -123,7 +123,7 @@ enyo.kind({
 									style:"width:48%",
 									name:"btnSignin",
 									onclick: "signIn"
-								},
+								}
 				   			]
 				   		},
 				   		{
@@ -131,25 +131,25 @@ enyo.kind({
 				   			style:"height:30px;",
 				   			onclick:"forgetPassword",
 		 		   			allowHtml: true,
-		 		   			content: "<a href='#' class='whitelink'>Forget Password ? &rarr;</a>",
+		 		   			content: "<a href='#' class='whitelink'>Forget Password ? &rarr;</a>"
 				   		},
 				   		{
 				   			tag:"div",
-				   			style:"height:100px;",
-				   		},		   	
-					],
-				},
-				],
-		},
+				   			style:"height:100px;"
+				   		}		   	
+					]
+				}
+				]
+		}
 	],
 	create: function() {
 		this.inherited(arguments);
 		// This is to override the onCreate Component.
 		// To add stuff prior whole component renders.
 		this.urls = [
-			"img/ad1.png",
-			"img/ad2.png",
-			"img/ad3.png"
+			"img/adSample01.png",
+			"img/adSample01.png",
+			"img/adSample01.png"
 		];
 		this.$.imgCarousel.setImages(this.urls);
 		//Starts at 2nd Pic which is the center
@@ -209,6 +209,7 @@ enyo.kind({
 			alert("Please fill up the fields with valid input to proceed");
 			for (var i = 0; i < results.errors.length; i++) {
 				results.errors[i].controller.setValue("");
+				results.errors[i].controller.setAttribute("placeholder", "");
 				results.errors[i].controller.setAttribute("placeholder", results.errors[i].message);		
 			};		
 		}

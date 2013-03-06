@@ -1,22 +1,17 @@
 enyo.kind({
-	name: "your.componentName",
-	kind: "FittableRows", 
-	classes: "enyo-fit enyo-unselectable",
+	name: "web.services",
 	components: [
 		{   
-			content:"Hello World",
-			fit:true,	
+			kind: "WebService", 
+			name:"yql", 
+			url: "http://query.yahooapis.com/v1/public/yql?format=json", 
+			onResponse:"processResponse",
+			onError:"", 
+			callbackName: "callback",	
 		},		
 	],
-	create: function(inSender,inEvent){
-		this.inherited(arguments);
-		//Do stuff onCreate
-	},
-	rendered : function(inSender,inEvent){
-		this.inherited(arguments);
-		//Do stuff afterRendered
-	},
-	refreshIt: function(){
-		//Custom external function to refresh this component.
-	},
+	processResponse: function(inSender, inEvent) {
+		// do something with it
+		this.$.textArea.setValue(JSON.stringify(inEvent.data, null, 2));
+	}
 });

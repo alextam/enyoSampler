@@ -41,7 +41,7 @@ enyo.kind({
 				   				{
 									tag:"h1",
 									content:"Login Details",
-									classes:"orangeHeader",
+									classes:"orangeHeader"
 								},
 				   				{
 						   			kind: "onyx.InputDecorator", 
@@ -58,7 +58,7 @@ enyo.kind({
 											attributes: {
 												required: "email"	
 											} 
-				 						},
+				 						}
 									]
 								},
 								{
@@ -77,7 +77,7 @@ enyo.kind({
 											attributes: {
 												required: "password"	
 											} 
-				 						},
+				 						}
 									]
 								},
 								{
@@ -94,19 +94,19 @@ enyo.kind({
 											onfocus:"zoomToInput",
 											onblur:"resetZoomFromInput",
 											attributes: {
-												required: "cpassword",
+												required: "cpassword"
 											} 
-				 						},
+				 						}
 									]
 								},
 								{
 									tag:"div",
-									style:"height:10px",
+									style:"height:15px"
 								},
 								{
 									tag:"h1",
 									content:"Personal Details",
-									classes:"orangeHeader",
+									classes:"orangeHeader"
 								},
 								{
 						   			kind: "onyx.InputDecorator", 
@@ -123,7 +123,7 @@ enyo.kind({
 											attributes: {
 												required: "required"	
 											} 
-				 						},
+				 						}
 									]
 								},
 								{
@@ -141,17 +141,17 @@ enyo.kind({
 											attributes: {
 												required: "required"	
 											} 
-				 						},
+				 						}
 									]
 								},
 								{
 									tag:"div",
-									style:"height:10px",
+									style:"height:15px"
 								},
 								{
 									tag:"h1",
 									content:"Enter Lot/House No",
-									classes:"orangeHeader",
+									classes:"orangeHeader"
 								},
 								{
 						   			kind: "onyx.InputDecorator", 
@@ -169,17 +169,17 @@ enyo.kind({
 												required: "required"	
 											} 
 											 
-				 						},
+				 						}
 									]
 								},
 								{
 									tag:"div",
-									style:"height:10px",
+									style:"height:15px"
 								},
 								{
 									tag:"h1",
 									content:"Delivery Address",
-									classes:"orangeHeader",
+									classes:"orangeHeader"
 								},
 								{
 						   			kind: "onyx.InputDecorator", 
@@ -195,7 +195,7 @@ enyo.kind({
 												readonly: "true"	
 											} 
 											 
-				 						},
+				 						}
 									]
 								},
 								{
@@ -212,7 +212,7 @@ enyo.kind({
 												readonly: "true"	
 											} 
 											 
-				 						},
+				 						}
 									]
 								},
 								{
@@ -229,7 +229,7 @@ enyo.kind({
 												readonly: "true"	
 											} 
 											 
-				 						},
+				 						}
 									]
 								},
 								{
@@ -245,7 +245,7 @@ enyo.kind({
 												readonly: "true"	
 											} 
 											 
-				 						},
+				 						}
 									]
 								},
 								{
@@ -261,22 +261,19 @@ enyo.kind({
 												readonly: "true"	
 											} 
 											 
-				 						},
+				 						}
 									]
-								},
-				   			],
+								}
+				   			]
 						},
 						{
 							tag:"div",
 							name:"jack",
-							style:"height:300px",
-						},
-						
-					], //End Main Component
-				},
-
-			],
-
+							style:"height:300px"
+						}	
+					] //End Main Component
+				}
+			]
 		},
 		{
 			kind: "onyx.Toolbar",
@@ -287,10 +284,10 @@ enyo.kind({
  						classes:"explode greenButton phdButton fullWidth resetTop",
  						fit:true, 
  						onclick:"registerAll",
- 						content: "Register",
- 					},
+ 						content: "Register"
+ 					}
 				]
-		},
+		}
 	],
 	create: function(inSender, inEvent) {
 		this.inherited(arguments);
@@ -308,20 +305,22 @@ enyo.kind({
  	},
  	zoomToInput : function (inSender, inEvent) {
  		// console.log(inSender);
- 		switch(inSender.name) {
- 			case "txtContactNo":
- 				this.$.createAccountScroll.setScrollTop(0);
- 				this.$.createAccountScroll.setScrollTop(180);
- 			break;
- 			case "txtFullName":
- 				this.$.createAccountScroll.setScrollTop(0);
- 				this.$.createAccountScroll.setScrollTop(180);
- 			break;
-
- 			case "txtUnitNo":
- 				this.$.createAccountScroll.setScrollTop(0);
- 				this.$.createAccountScroll.setScrollTop(300);
- 			break;
+ 		if (enyo.platform.android != null){
+	 		switch(inSender.name) {
+	 			case "txtContactNo":
+	 				this.$.createAccountScroll.setScrollTop(0);
+	 				this.$.createAccountScroll.setScrollTop(180);
+	 			break;
+	 			case "txtFullName":
+	 				this.$.createAccountScroll.setScrollTop(0);
+	 				this.$.createAccountScroll.setScrollTop(180);
+	 			break;
+	
+	 			case "txtUnitNo":
+	 				this.$.createAccountScroll.setScrollTop(0);
+	 				this.$.createAccountScroll.setScrollTop(300);
+	 			break;
+	 		}
  		}
  	},
 	pickerHandler : function (inSender, inEvent) {
@@ -339,7 +338,7 @@ enyo.kind({
  		this.validateUtil = new enyo.validator(); 
  		var allValidComponents = this.validateUtil.validate(this.$.registerAccountForm,onSuccessValidate,onErrorValidate);
 		function onSuccessValidate(results){
-			var registerPayload = new Object();
+			var registerPayload = {};
 			registerPayload.txtEmail = self.$.txtEmail.getValue();  
 			registerPayload.txtPassword = self.$.txtPassword.getValue();
 			registerPayload.txtFullName = self.$.txtFullName.getValue();
@@ -350,17 +349,18 @@ enyo.kind({
 			registerPayload.txtState = self.$.txtState.getValue();
 			registerPayload.txtSuburb = self.$.txtSuburb.getValue();
 			registerPayload.txtComplex = self.$.txtComplex.getValue();
-
+			alert("Registration Complete");
 			console.log('DONE..Payload is '+JSON.stringify(registerPayload));
+			new mainmenu.panels().renderInto(document.body);
 		}
 		function onErrorValidate(results){
 			alert("Please fill up the fields with valid input to proceed");
 			for (var i = 0; i < results.errors.length; i++) {
 				results.errors[i].controller.setValue("");
+				results.errors[i].controller.setAttribute("placeholder", "");
 				results.errors[i].controller.setAttribute("placeholder", results.errors[i].message);		
 			};		
 		}
-		//alert('register account');	
  	},
  	handleBtnBack : function(inSender, inEvent) {
  		inEvent.preventDefault();

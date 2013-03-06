@@ -36,7 +36,7 @@ enyo.kind({
 						{
 							tag:"p",
 							classes:"instruction",
-							content:"Please enter your address to locate your delivery address accurately.",
+							content:"Please enter your address to locate your delivery address accurately."
 						},
 						{ 
 							tag:"div",
@@ -47,7 +47,7 @@ enyo.kind({
 				   				{
 									tag:"h1",
 									content:"Street",
-									classes:"orangeHeader",
+									classes:"orangeHeader"
 								},
 				   				{
 									 kind: "onyx.PickerDecorator", 
@@ -57,7 +57,7 @@ enyo.kind({
 										{
 											content: "Pick One...",
 											classes: "fullWidth resetBottom roundedTop",
-											style:"background:none;color:#ffffff;font-weight:600;text-align:left;",
+											style:"background:none;color:#ffffff;font-weight:600;text-align:left;"
 										},
 										{
 											 kind: "onyx.Picker", 
@@ -95,10 +95,10 @@ enyo.kind({
 														{content: 'BULATAN'},
 														{content: 'LALUAN'},
 														{content: 'TINGKAT'},
-														{content: 'OTHER'},
+														{content: 'OTHER'}
 									 			
-											],
-										},
+											]
+										}
 								]},
 								{
 						   			kind: "onyx.InputDecorator", 
@@ -115,13 +115,13 @@ enyo.kind({
 											attributes: {
 												required: "required"	
 											} 
-				 						},
+				 						}
 									]
 								},
 								{
 									tag:"h1",
 									content:"State",
-									classes:"orangeHeader",
+									classes:"orangeHeader"
 								},
 								{
 									 kind: "onyx.PickerDecorator", 
@@ -131,7 +131,7 @@ enyo.kind({
 										{
 											content: "Pick One...",
 											classes: "fullWidth resetBottom resetTop roundedTop roundedBottom",
-											style:"background:none;color:#ffffff;font-weight:600;text-align:left;",
+											style:"background:none;color:#ffffff;font-weight:600;text-align:left;"
 										},
 
 										{
@@ -148,14 +148,14 @@ enyo.kind({
 													{content: 'NEGERI SEMBILAN'},
 													{content: 'MELAKA'},
 													{content: 'KEDAH'},
-													{content: 'JOHOR'},
+													{content: 'JOHOR'}
 											]
-										},
+										}
 								]},
 								{
 									tag:"h1",
 									content:"Suburb",
-									classes:"orangeHeader",
+									classes:"orangeHeader"
 								},
 								{
 						   			kind: "onyx.InputDecorator", 
@@ -168,15 +168,15 @@ enyo.kind({
 				 							classes:"inputFix",
 											placeholder: "Optional", 
 											onfocus:"zoomToInput",
-											onblur:"resetZoomFromInput",
+											onblur:"resetZoomFromInput"
 											
-				 						},
+				 						}
 									]
 								},
 								{
 									tag:"h1",
 									content:"Complex",
-									classes:"orangeHeader",
+									classes:"orangeHeader"
 								},
 								{
 						   			kind: "onyx.InputDecorator", 
@@ -189,24 +189,24 @@ enyo.kind({
 				 							classes:"inputFix",
 											placeholder: "Optional", 
 											onfocus:"zoomToInput",
-											onblur:"resetZoomFromInput",
+											onblur:"resetZoomFromInput"
 											
-				 						},
+				 						}
 									]
-								},
+								}
 
-				   			],
+				   			]
 						},
 						{
 							tag:"div",
 							name:"jack",
-							style:"height:300px",
-						},
+							style:"height:300px"
+						}
 						
-					], //End Main Component
-				},
+					] //End Main Component
+				}
 
-			],
+			]
 
 		},
 		{
@@ -218,10 +218,10 @@ enyo.kind({
  						classes:"explode greenButton phdButton fullWidth resetTop",
  						fit:true, 
  						onclick:"registerAddress",
- 						content: "Confirm",
- 					},
+ 						content: "Confirm"
+ 					}
 				]
-		},
+		}
 	],
 	create: function(inSender, inEvent) {
 		this.inherited(arguments);
@@ -244,7 +244,8 @@ enyo.kind({
    	findMatchingItem : function( controls, stringResults ){
    		var resultKey;
    		var len = controls.length;
-   		for(var i = 1;i <= len;i++){
+   		var i;
+   		for(i = 1;i <= len;i++){
    			if (controls[i].content === stringResults) {
    				resultKey = controls[i];
    				break;
@@ -254,17 +255,19 @@ enyo.kind({
    	},
  	zoomToInput : function (inSender, inEvent) {
  		// console.log(inSender);
- 		switch(inSender.name) {
- 			case "txtSuburb":
- 				this.$.createAccountScroll.setScrollTop(0);
- 				this.$.createAccountScroll.setScrollTop(180);
- 				this.$.txtSuburb.focus();
- 			break;
- 			case "txtComplex":
- 				this.$.createAccountScroll.setScrollTop(0);
- 				this.$.createAccountScroll.setScrollTop(180);
- 				this.$.txtComplex.focus();
- 			break;
+ 		if (enyo.platform.android != null){
+	 		switch(inSender.name) {
+	 			case "txtSuburb":
+	 				this.$.createAccountScroll.setScrollTop(0);
+	 				this.$.createAccountScroll.setScrollTop(180);
+	 				this.$.txtSuburb.focus();
+	 			break;
+	 			case "txtComplex":
+	 				this.$.createAccountScroll.setScrollTop(0);
+	 				this.$.createAccountScroll.setScrollTop(180);
+	 				this.$.txtComplex.focus();
+	 			break;
+	 		}
  		}
  	},
 	pickerHandler : function (inSender, inEvent) {
@@ -289,6 +292,7 @@ enyo.kind({
  			alert("Please fill up the fields with valid input to proceed");
 			for (var i = 0; i < results.errors.length; i++) {
 				results.errors[i].controller.setValue("");
+				results.errors[i].controller.setAttribute("placeholder", "");
 				results.errors[i].controller.setAttribute("placeholder", results.errors[i].message);		
 			};	
  		}
