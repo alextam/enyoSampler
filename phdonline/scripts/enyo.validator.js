@@ -1,5 +1,6 @@
 enyo.kind({
 	name: "enyo.validator",
+	version:"1.0.1",
 	validate: function( parentNodeName, onSuccess, onError ){
 		var allComponents = [];
 		var allControls = parentNodeName.controls;

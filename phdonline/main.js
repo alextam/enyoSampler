@@ -176,7 +176,12 @@ enyo.kind({
  	},
  	forgetPassword : function(inSender,inEvent){
  		inEvent.preventDefault();
- 		alert('forgetPassword');
+ 		var phonegapBridge = new enyo.phonegap.bridge();
+		phonegapBridge.dialogPrompt("Do you like enyo?", onCallBack, "Question");
+		function onCallBack(index){
+			alert(index);
+		}
+
  	},
 	carouselLoad: function(inSender, inEvent){
 		//do Nothing
