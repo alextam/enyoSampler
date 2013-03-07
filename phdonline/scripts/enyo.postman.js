@@ -6,9 +6,10 @@ enyo.kind({
 	 Dependency : enyo.base64.js loaded first.                                
 	****************************************************************/
 	name:"enyo.postman",
+	version:"1.0.1",
 	url:"http://localhost",
-	timeout:"5000",
-	port:"80",
+	timeout:3500,
+	port:80,
 	authUsername:"username",
 	authPassword:"password",
 	offline:"Uh..oh, problem in online connection, check your wifi and internet settings.",
@@ -25,6 +26,9 @@ enyo.kind({
 	create: function(inSender,inEvent){
 		this.inherited(arguments);
 		//Do stuff onCreate;
+	},
+	setTitle : function(sTitle){
+		this.title = sTitle;
 	},
 	setBaseURL: function(sUrl){
 		this.url = sUrl;
@@ -66,7 +70,6 @@ enyo.kind({
 				} else {
 					returnObject.contentType = paramObject.contentType;	
 				}
-
 			} else {
 				returnObject.contentType = 'application/json';
 			}
@@ -92,14 +95,27 @@ enyo.kind({
 		console.log(returnObject);
 		return returnObject;
 	},
+	getJSONFile : function(sFileName, onSuccess,onError){
+		// 0. Util to get local JSON file. As in physical stored file. (*.json)
+		var postMan =  new enyo.Ajax({
+			url:sFileName,
+			method:'GET',
+			handleAs:'json'
+		});	
+		postMan.go();
+		postMan.response(this, onSuccess);
+		postMan.error(this, onError);
+	},
+
 	gatewayPost: function(sGateway,payLoad,onSuccess,onError,extra ){
-		// 1. Used for Old Server connection with sGateway?param="xxxxx"
+		// 1. Used for Old Server connection with sGateway?param="xxxxx". Payload must be in {json}.
 		if (navigator.onLine){
 			var extraParam = this.checkExtraParam(extra);
 			var postMan = new enyo.Ajax({
 				url:sGateway,
 				method:extraParam.method,
 				headers:extraParam.headers,
+				timeout:this.timeout,
 				handleAs:extraParam.returnAs,
 				contentType:extraParam.contentType
 			});
@@ -112,7 +128,7 @@ enyo.kind({
 		}
 	},
 	postAuthTo: function(sRouteURL,payLoad,onSuccess,onError,extra){
-		// 2. Secure with basic auth web service connection
+		// 2. Secure with basic auth web service connection. Payload must be in {json}.
 		if (navigator.onLine){
 			if(arguments.length > 3){
 				var extraParam = this.checkExtraParam(extra);
@@ -121,6 +137,7 @@ enyo.kind({
 				this.myAuthString = {"Authorization" : this.myHash};
 				var postMan = new enyo.Ajax({
 					headers:this.myAuthString,
+					timeout:this.timeout,
 					url:this.url+":"+this.port+"/"+sRouteURL,
 					method:extraParam.method,
 					handleAs:extraParam.returnAs,
@@ -137,7 +154,7 @@ enyo.kind({
 		}
 	},
 	postTo: function(sRouteURL,payLoad,onSuccess,onError,extra){
-		// 3. Standard web service connection
+		// 3. Standard web service connection. Payload must be in {json}.
 		if (navigator.onLine){
 			if(arguments.length > 3){
 				//All criteria met
@@ -145,12 +162,34 @@ enyo.kind({
 				var postMan = new enyo.Ajax({
 					url:this.url+":"+this.port+"/"+sRouteURL,
 					method:extraParam.method,
+					timeout:this.timeout,
 					headers:extraParam.headers,
 					handleAs:extraParam.returnAs,
 					contentType:extraParam.contentType
 				});
 				postMan.go(payLoad);
 				postMan.response(this, onSuccess);
+				postMan.error(this, onError);
+			} else {
+				console.log("postTo method: Missing Route URL and required callback names");
+			}
+		} else {
+			this.failNetwork(); 
+		}
+	},
+	jsonp: function(sRouteURL,payLoad,onSuccess,onError,extra){
+		// 4. JSONP web service connection, uses just full URL including port and slashes. Payload must be {json}
+		if (navigator.onLine){
+			if(arguments.length > 3){
+				//All criteria met
+				var extraParam = this.checkExtraParam(extra);
+				var postMan = new enyo.JsonpRequest({
+					url:sRouteURL,
+					timeout:this.timeout,
+					callbackName:"callback"
+				});
+				postMan.go(payLoad);
+				postMan.response(this, onSuccess); 
 				postMan.error(this, onError);
 			} else {
 				console.log("postTo method: Missing Route URL and required callback names");
