@@ -20,7 +20,7 @@ enyo.kind({
 	 		this.latitude = latitude;
 	 		this.longitude = longtitude;
 	 	},
-	 	getGPSCoordinate: function(onSuccessCallBack,onFailCallBack,miliSecs,blockIOSUglyPrompt){
+	 	getGPSCoordinate: function(onSuccessCallBack,onFailCallBack,miliSecs,blockFallBack){
 	 		try{
 	 			if (this.getDeviceReady()){
 	 				var onSuccess = function(position){
@@ -38,24 +38,20 @@ enyo.kind({
 	 			} else {
 	 				console.log('Fall Back Glider into Native Browser GPS');
 	 				//Fall Back Glider into Native Browser GPS
-	 				//IOS still gives the ugly permission prompt, turning it off
 	 				if (navigator.geolocation) {
 	 					if (arguments.length > 3) {
-		 					if (!blockIOSUglyPrompt){  	
+		 					if (!blockFallBack){  	
 				 				var browserOnSuccess = function(position){
 				 					onSuccessCallBack.call(this,position);
 				 				};
 				 				var browserOnError = function(error){
 				 					onFailCallBack.call(this,error);
 				 				};
-				 				if (arguments.length > 2){
-				 					navigator.geolocation.getCurrentPosition(browserOnSuccess, browserOnError, {timeout:miliSecs});
-				 				} else {
-				 					navigator.geolocation.getCurrentPosition(browserOnSuccess, browserOnError, {timeout:5000});
-				 				}
+				 				
+				 				navigator.geolocation.getCurrentPosition(browserOnSuccess, browserOnError, {timeout:miliSecs});		
 			 				} else {
 			 					// if it's blocked default error
-			 					console.log("Device/Browser cannot support GPS");
+			 					console.log("Device/Browser cannot support, arguments requirement not met or security lock");
 			 					onFailCallBack.call(this,"B-GPS Not Ready");
 			 				}
 		 				} else {
