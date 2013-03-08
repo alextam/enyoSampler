@@ -20,7 +20,7 @@ enyo.kind({
 	 		this.latitude = latitude;
 	 		this.longitude = longtitude;
 	 	},
-	 	getGPSCoordinate: function(onSuccessCallBack,onFailCallBack,miliSecs){
+	 	getGPSCoordinate: function(onSuccessCallBack,onFailCallBack,miliSecs,blockIOSUglyPrompt){
 	 		try{
 	 			if (this.getDeviceReady()){
 	 				var onSuccess = function(position){
@@ -36,22 +36,32 @@ enyo.kind({
 	 				}
 	 				
 	 			} else {
-	 				console.log(enyo.platform);
 	 				console.log('Fall Back Glider into Native Browser GPS');
 	 				//Fall Back Glider into Native Browser GPS
 	 				//IOS still gives the ugly permission prompt, turning it off
 	 				if (navigator.geolocation) {
-
-		 				var browserOnSuccess = function(position){
-		 					onSuccessCallBack.call(this,position);
-		 				};
-		 				var browserOnError = function(error){
-		 					onFailCallBack.call(this,error);
-		 				};
-		 				if (arguments.length > 2){
-		 					navigator.geolocation.getCurrentPosition(browserOnSuccess, browserOnError, {timeout:miliSecs});
+	 					if (arguments.length > 3) {
+		 					if (!blockIOSUglyPrompt){  	
+				 				var browserOnSuccess = function(position){
+				 					onSuccessCallBack.call(this,position);
+				 				};
+				 				var browserOnError = function(error){
+				 					onFailCallBack.call(this,error);
+				 				};
+				 				if (arguments.length > 2){
+				 					navigator.geolocation.getCurrentPosition(browserOnSuccess, browserOnError, {timeout:miliSecs});
+				 				} else {
+				 					navigator.geolocation.getCurrentPosition(browserOnSuccess, browserOnError, {timeout:5000});
+				 				}
+			 				} else {
+			 					// if it's blocked default error
+			 					console.log("Device/Browser cannot support GPS");
+			 					onFailCallBack.call(this,"B-GPS Not Ready");
+			 				}
 		 				} else {
-		 					navigator.geolocation.getCurrentPosition(browserOnSuccess, browserOnError, {timeout:5000});
+		 					// Did not provide 4th param
+		 					console.log("Device/Browser cannot support GPS");
+		 					onFailCallBack.call(this,"B-GPS Not Ready");
 		 				}
 	 				} else {
 	 					// If all else Fails
