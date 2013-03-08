@@ -176,10 +176,14 @@ enyo.kind({
  	},
  	forgetPassword : function(inSender,inEvent){
  		inEvent.preventDefault();
- 		var phonegapBridge = new enyo.phonegap.bridge();
-		phonegapBridge.dialogPrompt("Do you like enyo?", onCallBack, "Question");
-		function onCallBack(index){
-			alert(index);
+ 		var PG = enyo.phonegap.bridge;
+		PG.getGPSCoordinate(onSuccessCallBack, onFailCallBack);
+		function onSuccessCallBack(inResponse){
+			alert("All Good");
+			console.log(inResponse);
+		}
+		function onFailCallBack(inResponse){
+			alert("Device GPS and Wifi not ready, please check settings.");
 		}
 
  	},
