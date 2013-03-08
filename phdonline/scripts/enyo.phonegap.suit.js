@@ -1,12 +1,23 @@
 enyo.kind({
-	name: "enyo.phonegap.bridge",
+	/****************************************************************
+	 By : Alex Tam aka Ming Yuen
+	 Website : http://www.isgoodstuff.com
+	 Static Library, just use directly like a variable without 
+	 instatiating.
+
+	 Usage : 
+	 var PG = enyo.phonegap.suit;
+	 PG.setDeviceReady(true);
+
+	****************************************************************/
+	name: "enyo.phonegap.suit",
 	statics: {
 		version:"1.0.1",
 		title:"Alert",
 		latitude:3.139702,
 		longitude:101.686921,
 		deviceReady:false,
-    	setDeviceReady: function(status){
+                setDeviceReady: function(status){
 			console.log('Device is ready, PhoneGap Ready...');
 			this.deviceReady = status;
  		},
@@ -68,16 +79,31 @@ enyo.kind({
 	 				
 	 			}
 	 		}catch(e){
-	 			console.log('Try catch throw?');
-	 			onFailCallBack.call(this,"Device Not Ready");
+ 	 			onFailCallBack.call(this,"Device Not Ready");
 	 			console.log('EXCEPTION : '+e.message);
 	 		}
 	 	},
-	 	getCamera: function(onSuccessCallBack, onFailCallBack){
-	 		try{
-
+	 	getCamera: function(iQuality, onSuccessCallBack, onFailCallBack){
+	 		try{	
+	 			if (arguments.length > 1) {
+	 				if (this.getDeviceReady()){
+		 				var onCameraGetSuccess = function(imageData) {
+						    onSuccessCallBack.call(this, "data:image/jpeg;base64," + imageData);
+						};
+						var onCameraGetFail = function(message) {
+						    onFailCallBack.call(this, message);
+						};
+		 				navigator.camera.getPicture(onCameraGetSuccess, onCameraGetFail, { quality: iQuality, destinationType: Camera.DestinationType.DATA_URL}); 
+						
+					} else {
+						onFailCallBack.call(this, "Device Not Ready");
+					}
+	 			} else {
+	 				console.log('Invalid arguments')
+	 			}
 			}catch(e){
-
+				onFailCallBack.call(this,"Device Camera Not Ready");
+	 			console.log('EXCEPTION : '+e.message);
 			}
 	 	},
 		alert: function(message,title){

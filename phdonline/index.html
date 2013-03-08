@@ -15,7 +15,7 @@
 	<script src="scripts/enyo.validator.js" type="text/javascript"></script>
 	<script src="scripts/enyo.base64.js" type="text/javascript"></script>
 	<script src="scripts/enyo.postman.js" type="text/javascript"></script>
-	<script src="scripts/enyo.phonegap.bridge.js" type="text/javascript"></script>
+	<script src="scripts/enyo.phonegap.suit.js" type="text/javascript"></script>
 
 	<script src="main.js" type="text/javascript"></script>
 	<script src="register.address.js" type="text/javascript"></script>
@@ -32,6 +32,13 @@
 </head>
 <body>
 <script type="text/javascript">
+	var PG = enyo.phonegap.suit;
+
+	document.addEventListener("deviceready", setDeviceReady, false);
+	function setDeviceReady(){
+		console.log("READY");
+		PG.setDeviceReady(true);
+	}
 	new main.app().renderInto( document.body );
 </script>
 </body>
